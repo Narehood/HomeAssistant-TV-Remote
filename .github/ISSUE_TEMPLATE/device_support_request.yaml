@@ -1,70 +1,77 @@
-name: Amazon Fire TV Device Support Request
-description: Request Support for a currently unsupported Amazon Fire TV Device
-title: "[Amazon Fire TV Device Support]: "
-labels: ["New Device Support", "enhancement"]
-assignees:
-  - PRProd
+name: Device support request
+description: Request a missing device preset or device family
+title: "[Device support]: "
+labels: ['New Device Support', 'enhancement']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to contribute to this project with your requests!  This form is to request official support for any **Amazon Fire TV** device that is not yet supported.  ([See supported Fire devices here](https://github.com/PRProd/HA-Firemote/wiki/Existing-Amazon-Devices---Support-Chart))
-  - type: markdown
-    attributes:
-      value: <br>Please reference [this list](https://github.com/PRProd/HA-Firemote/wiki/Existing-Amazon-Devices---Support-Chart) to find the appropriate name to use in this **Device Name** field.   This official [Amazon Products link](https://developer.amazon.com/docs/fire-tv/device-specifications-comparison-table.html) might also be helpful to assist you with this task
+        This form reports to Narehood/HomeAssistant-TV-Remote, the independently maintained Firemote fork. See [setup and troubleshooting](https://github.com/Narehood/HomeAssistant-TV-Remote/blob/main/docs/INSTALLATION.md). Include observed results; do not post credentials or private addresses.
   - type: input
-    id: firedevicename
+    id: card-version
     attributes:
-      label: Device Name
-      description: The official name of the device you own that is not yet supported.  
-      placeholder: ex. Fire TV 4-Series (2021)
+      label: Card version
+      description: "Version shown by HACS or the card. Include the selected tag/commit for development versions."
     validations:
       required: true
-  - type: markdown
+  - type: input
+    id: ha-version
     attributes:
-      value: "<br><br>Help: [How do I test different compatability mode event numbers?](https://github.com/PRProd/HA-Firemote#why-dont-any-of-the-buttons-on-the-firemote-work-at-all)"
+      label: Home Assistant version
+      description: "Include the exact Core/frontend version."
+    validations:
+      required: true
   - type: dropdown
-    id: bestEventNumber
+    id: installation
     attributes:
-      label: Which compatibility mode event number works BEST with your device?
-      multiple: false
+      label: Installation method
       options:
-        - event0
-        - event1
-        - event2
-        - event3
-        - event4
-        - event5
-        - event6
-        - event7
-        - event8
-        - event9
-        - event10
-        - event11
-        - event12
-        - event13
-        - Strong (slower)
+        - HACS custom repository
+        - Manual release bundle
+        - Development build
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: <br>
   - type: textarea
-    id: inputDump
+    id: device
     attributes:
-      label: Device ADB Input Interrogation Response
-      description: 'Follow the instructions in this link https://github.com/PRProd/HA-Firemote/wiki/Getting-Android-Device-Attributes#getting-device-input-details to gather the required device information.'
-      placeholder: 
+      label: Device and integration
+      description: "Include manufacturer, model, firmware, integration name, control_mode, and how the media player and remote entities are paired."
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: <br>
   - type: textarea
-    id: additionalInfo
+    id: preset
     attributes:
-      label: Additional Comments (optional)
-      description: Do all of your buttons seem to work except for a few?  Which ones?  Do other event numbers also work?
-      placeholder: 
+      label: Device preset and compatibility observations
+      description: "State family/model preset, compatibility_mode values tried, buttons tested, and their results. Unknown or no working mode is a valid answer."
+    validations:
+      required: true
+  - type: textarea
+    id: input-details
+    attributes:
+      label: Device input details
+      description: "For Android/Fire with ADB, run dumpsys input using the ADB action and include relevant adb_response devices/paths. See collecting-device-information in the installation guide. State not applicable for other integrations."
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: yaml
+    attributes:
+      label: Minimal card YAML
+      description: "Remove credentials and personal information."
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and observed result
+      description: "Give numbered reproduction/test steps, expected behavior, actual behavior, and relevant action or browser errors."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: "Screenshots, relevant errors, and full historical upstream issue URLs if applicable."
     validations:
       required: false
