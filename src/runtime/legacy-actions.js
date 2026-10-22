@@ -860,7 +860,7 @@ export function executeAction(buttonID, actionType = 'click', gesture = new Gest
         if(buttonID == 'playpause-button' && actionType == 'click') {
           if(deviceFamily == 'apple-tv') {
             var playpausecommand = 'pause';
-            if(_hass.states[_config.entity].state=='paused'){ playpausecommand = 'play'; };
+            if(_hass.states[_config.entity]?.state=='paused'){ playpausecommand = 'play'; };
             _hass.callService("remote", "send_command", { entity_id: _config.apple_tv_remote_entity, command: playpausecommand, num_repeats: 1, delay_secs: 0, hold_secs: 0});
             return;
           }
@@ -1916,7 +1916,7 @@ export function executeAction(buttonID, actionType = 'click', gesture = new Gest
             unsupportedButton();
             return;
           }
-          if(confirm('Are you sure you want to reboot '+_hass.states[_config.entity]?.attributes?.friendly_name || _config.entity) == false) {
+          if(confirm('Are you sure you want to reboot '+(_hass.states[_config.entity]?.attributes?.friendly_name || _config.entity)) == false) {
             return;
           }
           _hass.callService("androidtv", "adb_command", { entity_id: _config.entity, command: 'adb shell reboot' });

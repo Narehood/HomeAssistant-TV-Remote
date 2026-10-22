@@ -160,3 +160,7 @@ No calendar estimate is assigned before device access and incomplete launch meta
 ## Audit validation
 
 The audit checked JavaScript syntax for the five shipped modules and inspected the device, app, and translation registries. A Node VM harness running the actual card source with minimal DOM/Lit stubs reproduced two failures: an unknown model passes `setConfig` and makes `render()` return `undefined`, while the known `fire_stick_4k` model returns a template; and an editor without `hass.entities` throws a `TypeError` during platform filtering. This establishes those source behaviors without claiming browser layout or hardware validation. Service delivery, current app identifiers, CEC/IR, integration recovery, and physical device behavior remain acceptance checks for implementation.
+
+## Provider scope clarification, 22 October 2026
+
+The user's follow-up narrows new launcher additions to actual TV/video providers. This supersedes the original general-app backlog scope: review every request, preserve its evidence, and exclude utilities, generic or personal-media players, unofficial clients and unverified identities from additions. The [102-entry provider review](PROVIDER_REVIEW.md) retains 51 and excludes 51. All 385 inherited YAML IDs remain addressable, while inherited VPNs become legacy-only in new-choice menus. Exclusion is recorded separately from implementation or device validation.

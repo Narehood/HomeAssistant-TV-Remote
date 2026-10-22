@@ -104,6 +104,27 @@ describe('safe launcher content and state recovery', () => {
 });
 
 describe('dispatch and service outcomes', () => {
+  it.each(['paused', 'playing', undefined])('handles Apple play/pause with entity state %s', async state => {
+    const environment = hass();
+    const {card,service} = await mount({...base,device_family:'apple-tv',device_type:'appletv-4k-gen2',apple_tv_remote_entity:'remote.tv'}, environment);
+    if (state === undefined) Reflect.deleteProperty(environment.states, 'media_player.tv');
+    else environment.states['media_player.tv'].state = state;
+    expect(() => card._executeAction('playpause-button')).not.toThrow();
+    await flush();
+    expect(service).toHaveBeenCalledWith('remote','send_command',expect.objectContaining({command:state === 'paused' ? 'play' : 'pause'}),{entity_id:'remote.tv'});
+  });
+
+  it.each([false,true])('uses the entity ID in reboot confirmation and honors confirmation %s', async answer => {
+    const environment = hass();
+    Reflect.deleteProperty(environment.states['media_player.tv'].attributes, 'friendly_name');
+    const confirm = vi.fn(() => answer); vi.stubGlobal('confirm',confirm);
+    const {card,service} = await mount(base,environment);
+    card._executeAction('reboot-button'); await flush();
+    expect(confirm).toHaveBeenCalledWith('Are you sure you want to reboot media_player.tv');
+    if (answer) expect(service).toHaveBeenCalledWith('androidtv','adb_command',{command:'adb shell reboot'},{entity_id:'media_player.tv'});
+    else expect(service).not.toHaveBeenCalled();
+  });
+
   it('preserves whole family routes and honors explicit strategies without root ADB inheritance', () => {
     const environment = hass();
     const entry = {adbLaunchCommand:'ROOT ADB',appName:'Root',chromecast:{appName:'com.example'},'apple-tv':{appName:'Photos'}};
@@ -321,6 +342,21 @@ describe('pure editor, localization and layout', () => {
     (editor.shadowRoot!.querySelector('button') as HTMLButtonElement).click(); await editor.updateComplete;
     expect(editor.shadowRoot!.querySelectorAll('select[name^=app_launch_]')).toHaveLength(8);
     expect(Reflect.get(editor,'_config').app_launch_99).toBe('netflix');
+  });
+  it('hides VPN utilities in new launcher fields and preserves an explicitly configured VPN', async () => {
+    const editor = new FiremoteCardEditor();
+    editor.setConfig({...base,defaultRemoteStyle_override:'AL2'}); Reflect.set(editor,'hass',hass());
+    document.body.append(editor); await editor.updateComplete;
+    expect(editor.shadowRoot!.querySelector('option[value="nordvpn"]')).toBeNull();
+    expect(editor.shadowRoot!.querySelector('option[value="adguardvpn"]')).toBeNull();
+    editor.setConfig({...base,defaultRemoteStyle_override:'AL2',app_launch_1:'nordvpn'}); await editor.updateComplete;
+    const select = editor.shadowRoot!.getElementById('app_launch_1') as HTMLSelectElement;
+    expect(select.value).toBe('nordvpn');
+    expect(select.selectedOptions[0]!.textContent).toContain('VPN utility; existing configuration');
+    expect(editor.shadowRoot!.querySelector('#app_launch_2 option[value="nordvpn"]')).toBeNull();
+    const card = await mount({...base,defaultRemoteStyle_override:'AL2',app_launch_1:'nordvpn'});
+    (card.card.shadowRoot!.getElementById('nordvpn-button') as HTMLElement).click(); await flush();
+    expect(card.service).toHaveBeenCalledWith('androidtv','adb_command',expect.objectContaining({command:expect.stringContaining('com.nordvpn.android')}),{entity_id:'media_player.tv'});
   });
   it('skips unrelated entity updates in both card and editor', async () => {
     const environment = hass(); const {card} = await mount(base,environment);

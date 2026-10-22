@@ -132,13 +132,13 @@ try {
       }
     }
     const android = models.find(model => model.family === 'nvidia-shield' && model.defaultRemoteStyle === 'NS2');
-    const androidConfig = { ...configFor(android), control_mode: 'android-tv-remote', app_launch_1: 'nuvio' };
+    const androidConfig = { ...configFor(android), control_mode: 'android-tv-remote', app_launch_1: 'hallmark' };
     const remote = hass.states[androidConfig.android_tv_remote_entity];
     const previousFeatures = remote.attributes.supported_features;
     remote.attributes.supported_features = 4;
     const modern = createCard(androidConfig); host.replaceChildren(modern); await modern.updateComplete;
     calls.length = 0;
-    for (const id of ['up-button', 'center-button', 'nuvio-button']) {
+    for (const id of ['up-button', 'center-button', 'hallmark-button']) {
       modern.shadowRoot.getElementById(id).click();
       await new Promise(resolve => setTimeout(resolve, 10));
     }
@@ -167,7 +167,7 @@ try {
   assert.deepEqual(configuration.modernCalls.map(call => [call.domain, call.service, call.data.command || call.data.activity]), [
     ['remote', 'send_command', 'DPAD_UP'],
     ['remote', 'send_command', 'DPAD_CENTER'],
-    ['remote', 'turn_on', 'com.nuvio.tv'],
+    ['remote', 'turn_on', 'com.feeln.androidapp'],
     ['remote', 'send_command', 'text:literal "$() text'],
   ], 'Opt-in Android TV Remote must navigate, launch a new catalog app, and send structured text without ADB.');
   results.nativeCalls = nativeCalls;

@@ -131,6 +131,8 @@ Options:
 
 Choose app presets in the card editor or define a [custom launcher](#launcher-button-customizations). Availability depends on platform, installed apps, language, and region. Existing YAML identifiers remain valid for legacy presets; configured retired entries remain available for editing, while new recommendations hide or label them. For a missing or changed app, use the [fork app request form](https://github.com/Narehood/HomeAssistant-TV-Remote/issues/new?template=App_Shortcut_Request.yaml) with [device-observed identifiers](docs/INSTALLATION.md#collect-device-information).
 
+New presets are reviewed as official TV/video services. VPNs, generic players, unofficial clients and unverified new identities are excluded; [the provider review](docs/PROVIDER_REVIEW.md) records every proposed addition. Inherited VPN IDs remain usable in existing YAML and appear only when already configured.
+
 ## Launcher Button Customizations
 You are not limited to only using the launcher buttons that come with Firemote.  Through YAML, you can define your own working buttons in one of two ways: defining a script or constructing an action call.
 

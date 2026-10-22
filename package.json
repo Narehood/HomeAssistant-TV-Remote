@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit",
     "test": "npm run build && vitest run",
     "test:watch": "vitest",
-    "check": "npm run lint && npm run typecheck && npm test && npm run verify:dist",
+    "check": "npm run lint && npm run typecheck && npm run verify:dist && npm test",
     "verify:dist": "node scripts/verify-dist.mjs",
     "test:browser": "npm run build && node scripts/browser-smoke.mjs",
     "test:roku": "npm run build && node scripts/roku-smoke.mjs"

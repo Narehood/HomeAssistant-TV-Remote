@@ -23,10 +23,15 @@ Edit authored card, editor, catalog, and device code in `src/`. The esbuild pipe
 
 ## Validate changes
 
+After changing source or the package version, rebuild the distribution before validating:
+
 ```sh
+npm run build
 npm run check
 npm run test:browser
 ```
+
+`check` verifies the source against the existing HACS artifact **before** its test step can rebuild anything. A stale bundle fails with a rebuild instruction; commit the matching bundle and checksum with source changes. CI runs that same gate on the checked-out artifact.
 
 The project also exposes `npm run build`, `npm run test`, `npm run lint`, and `npm run typecheck` for focused work. `npm run test:browser` builds and loads the actual release artifact with mocked Home Assistant, checking device presets and pointer/keyboard activation. On Windows the runner uses installed Chrome with an isolated profile; on other hosts install Chromium first with `npx playwright install --with-deps chromium`. CI and release builds run `npm ci`, `npm run check`, install Chromium, and run `npm run test:browser`. HACS validation is an additional metadata/repository check using category `plugin` (Dashboard in the UI).
 
@@ -46,7 +51,7 @@ Catalog lifecycle metadata uses `lifecycle: 'active' | 'legacy'`. Legacy entries
 
 Release preparation is **manual**. Merging a branch or running validation does not publish anything.
 
-1. Review changes and validation evidence. Set the package version, update the npm lockfile through npm when necessary, run `npm ci`, `npm run check`, and `npm run test:browser`, and review the generated bundle and notices. Commit the reviewed source, lockfile, and distribution through the normal fork contribution process.
+1. Review changes and validation evidence. Set the package version, update the npm lockfile through npm when necessary, run `npm ci`, `npm run build`, `npm run check`, and `npm run test:browser`, and review the generated bundle and notices. Commit the reviewed source, lockfile, and distribution through the normal fork contribution process.
 2. A maintainer creates the matching version tag, such as `v5.0.0-beta.1`, **only in Narehood/HomeAssistant-TV-Remote**. Verify both owner and repository before any tag push or API write. The workflow requires an existing tag and checks it against `package.json`; it never creates a tag.
 3. In this fork's Actions tab, run **Prepare release** from the reviewed workflow and enter the tag. Leave **Also create a draft GitHub release** unchecked to produce only an Actions artifact for review. Check it only when you intend to create a draft in this fork.
 4. The workflow installs locked dependencies, runs `npm run check` and `npm run test:browser`, and packages `HA-Firemote.js`, `SHA256SUMS`, `LICENSE`, `CREDITS.md`, and `THIRD_PARTY_NOTICES.md`. The checksums cover the bundle and all attached notices. In the downloaded artifact directory, verify them with `sha256sum --check SHA256SUMS` or compare with PowerShell `Get-FileHash -Algorithm SHA256`.
@@ -68,3 +73,7 @@ These are maintainer settings tasks; adding documentation and workflow files doe
 - Publish a reviewed fork release when ready and verify HACS custom-repository installation end to end. Inclusion in HACS's default list is a separate future decision; do not advertise default-store status before acceptance.
 
 Do not apply any of these changes to `PRProd/HA-Firemote`.
+
+## TV-provider additions
+
+New catalog IDs require a primary-source provider approval in `src/catalog/provider-policy.ts`. Confirm that the exact app is an official TV/broadcaster/video-content service, rather than a generic player, unofficial client, personal-media tool, VPN or other utility. Record operator identity, category, source URLs and the per-ID decision in [the provider review](PROVIDER_REVIEW.md) and its JSON companion. Identity approval does not establish an app launch route or device success. Preserve all inherited YAML IDs; inherited VPNs are legacy-only and appear in the editor only when configured. Keep excluded request evidence in the issue ledger without counting it as implemented provider metadata.

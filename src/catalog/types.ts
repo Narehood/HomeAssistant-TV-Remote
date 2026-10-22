@@ -31,6 +31,7 @@ export interface LauncherEntry extends PlatformLaunch {
   lifecycle?: Lifecycle;
   catalogId?: string;
   catalogOrigin?: 'baseline' | 'supplemental';
+  legacyReason?: string;
   // Legacy data has both top-level and per-family fields. Do not flatten it.
   [key: string]: unknown;
 }

@@ -621,7 +621,8 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/26#issuecomment-1370098658"
-      ]
+      ],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 27,
@@ -1542,7 +1543,8 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/53#issuecomment-1478097270"
-      ]
+      ],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 54,
@@ -1908,6 +1910,14 @@
         "https://github.com/PRProd/HA-Firemote/issues/71#issuecomment-1519048107",
         "https://github.com/PRProd/HA-Firemote/issues/71#issuecomment-1535105244",
         "https://github.com/PRProd/HA-Firemote/issues/71#issuecomment-1546170500"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "oqee-freebox-pop",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Free documents its own OQEE application specifically on the Freebox Player Pop, with live television and replay. This is the provider's TV interface, rather than a general launcher utility. The reported oqee.launcher package and its Xiaomi use still need launch validation."
+        }
       ]
     },
     {
@@ -4982,13 +4992,14 @@
         "directv-set-top"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "directv-set-top",
           "family": "none",
-          "status": "blocked-missing-evidence",
-          "blocker": "Package com.att.tv.openvideo is reported, but the request does not select a supported device family. Identify the actual adapter/device before enabling this set-top variant; do not substitute DIRECTV Stream."
+          "status": "excluded-by-provider-policy",
+          "blocker": "DIRECTV is a verified television provider, but primary material about its Gemini devices does not independently connect the specifically requested com.att.tv.openvideo/Sony set-top identity to an official supported client. Exact-client proof remains unresolved; retain the request evidence, not this new catalog entry. This is not a finding against DIRECTV itself.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "DIRECTV set-top/Sony Android path, com.att.tv.openvideo candidate tested by maintainer request only; closed stale without success. Distinct from confirmed DIRECTV stream preset.",
@@ -5089,7 +5100,16 @@
         "https://github.com/PRProd/HA-Firemote/issues/170#issuecomment-1762157870",
         "https://github.com/PRProd/HA-Firemote/issues/170#issuecomment-1766839311",
         "https://github.com/PRProd/HA-Firemote/issues/170#issuecomment-1777500033"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "directv-set-top",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "DIRECTV is a verified television provider, but primary material about its Gemini devices does not independently connect the specifically requested com.att.tv.openvideo/Sony set-top identity to an official supported client. Exact-client proof remains unresolved; retain the request evidence, not this new catalog entry. This is not a finding against DIRECTV itself."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 171,
@@ -9177,7 +9197,8 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/300#issuecomment-1911243991"
-      ]
+      ],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 301,
@@ -9235,13 +9256,14 @@
         "stbemupro"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "stbemupro",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact StbEmu Pro listing by M Vasilchuk describes an IPTV-box emulator that users must configure for their own IPTV provider; its supplied demo portal is for testing. It is a client utility, not the television service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "StbEmu Pro package com.mvas.stb.emu.pro from store, no working launch; closed pending requester response. No local preset despite artwork completed.",
@@ -9266,7 +9288,16 @@
         "https://github.com/PRProd/HA-Firemote/issues/302#issuecomment-1912404867",
         "https://github.com/PRProd/HA-Firemote/issues/302#issuecomment-1919526961",
         "https://github.com/PRProd/HA-Firemote/issues/302#issuecomment-1955408386"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "stbemupro",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact StbEmu Pro listing by M Vasilchuk describes an IPTV-box emulator that users must configure for their own IPTV provider; its supplied demo portal is for testing. It is a client utility, not the television service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 304,
@@ -9549,25 +9580,28 @@
         "mytvonline3"
       ],
       "auditStatus": "historically_declined",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "mytvonline3",
           "family": "amazon-fire",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: observed playback activities do not establish installability or launch support on the requested device families."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's MYTVOnline3 product page describes a media-viewing client, and its official setup guide specifically covers version 3 while disclaiming provision of content/service URLs. Programming comes from the user's separate provider.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "mytvonline3",
           "family": "chromecast",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: observed playback activities do not establish installability or launch support on the requested device families."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's MYTVOnline3 product page describes a media-viewing client, and its official setup guide specifically covers version 3 while disclaiming provision of content/service URLs. Programming comes from the user's separate provider.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "mytvonline3",
           "family": "nvidia-shield",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: observed playback activities do not establish installability or launch support on the requested device families."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's MYTVOnline3 product page describes a media-viewing client, and its official setup guide specifically covers version 3 while disclaiming provision of content/service URLs. Programming comes from the user's separate provider.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "MYTVOnline3/Formuler-only build; upstream declined unsupported hardware and suggested custom launcher. No local preset; do not label implemented.",
@@ -9600,7 +9634,16 @@
         "https://github.com/PRProd/HA-Firemote/issues/318#issuecomment-1927580850",
         "https://github.com/PRProd/HA-Firemote/issues/318#issuecomment-1927622311",
         "https://github.com/PRProd/HA-Firemote/issues/318#issuecomment-1927641091"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "mytvonline3",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Formuler's MYTVOnline3 product page describes a media-viewing client, and its official setup guide specifically covers version 3 while disclaiming provision of content/service URLs. Programming comes from the user's separate provider."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 319,
@@ -9615,25 +9658,28 @@
         "mytvonline2"
       ],
       "auditStatus": "historically_declined",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "mytvonline2",
           "family": "amazon-fire",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: establish installability and supported hardware before enabling launch."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's own help specifically covers MYTVOnline 2 and says Formuler provides devices, no content, and no service URLs; users obtain portals/playlists from separate providers. Being official Formuler software does not make it a TV provider.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "mytvonline2",
           "family": "chromecast",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: establish installability and supported hardware before enabling launch."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's own help specifically covers MYTVOnline 2 and says Formuler provides devices, no content, and no service URLs; users obtain portals/playlists from separate providers. Being official Formuler software does not make it a TV provider.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "mytvonline2",
           "family": "nvidia-shield",
-          "status": "blocked-missing-evidence",
-          "blocker": "Formuler-only app: establish installability and supported hardware before enabling launch."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Formuler's own help specifically covers MYTVOnline 2 and says Formuler provides devices, no content, and no service URLs; users obtain portals/playlists from separate providers. Being official Formuler software does not make it a TV provider.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "MYTVOnline2/Formuler-only build; upstream declined unsupported hardware. No local preset; do not label implemented.",
@@ -9664,7 +9710,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/319#issuecomment-1927582700"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "mytvonline2",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Formuler's own help specifically covers MYTVOnline 2 and says Formuler provides devices, no content, and no service URLs; users obtain portals/playlists from separate providers. Being official Formuler software does not make it a TV provider."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 320,
@@ -10603,13 +10658,14 @@
         "function-screen-mirroring"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "function-screen-mirroring",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Amazon's official help identifies Display Mirroring as reflecting a user's Miracast device screen on Fire TV. This is a device function, not a programming provider or channel.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "System Miracast launch tested via custom ADB command; upstream intentionally did not add button because ADB/network control is lost in mirroring. Relates to open #686.",
@@ -10640,7 +10696,16 @@
         "https://github.com/PRProd/HA-Firemote/issues/348#issuecomment-2017281883",
         "https://github.com/PRProd/HA-Firemote/issues/348#issuecomment-2017334073",
         "https://github.com/PRProd/HA-Firemote/issues/348#issuecomment-2018265764"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "function-screen-mirroring",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Amazon's official help identifies Display Mirroring as reflecting a user's Miracast device screen on Fire TV. This is a device function, not a programming provider or channel."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 350,
@@ -11333,7 +11398,8 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/363#issuecomment-2028908505",
         "https://github.com/PRProd/HA-Firemote/issues/363#issuecomment-2050629559"
-      ]
+      ],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 366,
@@ -12754,6 +12820,14 @@
         "https://github.com/PRProd/HA-Firemote/issues/391#issuecomment-2096575548",
         "https://github.com/PRProd/HA-Firemote/issues/391#issuecomment-2096580145",
         "https://github.com/PRProd/HA-Firemote/issues/391#issuecomment-2101181885"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "eurosportplayer",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Discovery's own corporate release identifies Eurosport Player as Eurosport's live/on-demand television service and connected-TV app. Keep only as a historical official-provider identity, with availability unresolved for the legacy package. Eurosport's current help says Premium subscriptions ended on 22 July 2024; it must not be represented as a tested or currently active service."
+        }
       ]
     },
     {
@@ -13458,19 +13532,21 @@
         "ninja-ninjabox"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "partially-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "ninja",
           "family": "amazon-fire",
-          "status": "blocked-missing-evidence",
-          "blocker": "APK build identity com.jlwockee.iMPlayer conflicts with observed com.ninja.ninjabox. Identify the installed build and package before adding an executable preset."
+          "status": "excluded-by-provider-policy",
+          "blocker": "The candidate Team Ninja site advertises live TV but does not independently establish an accountable content operator or connect a verified official programming service to the requested build. The issue also records conflicting com.jlwockee.iMPlayer versus com.ninja.ninjabox identities. An APK link and advertising alone do not resolve that identity.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "ninja-ninjabox",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The observed com.ninja.ninjabox package is not independently connected by a primary publisher/operator source to a verified television provider. Team Ninja's candidate site gives generic TV advertising and the linked APK was reported under a different package; preserving an observed package as a separate entry does not supply the missing provider proof.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Ninja APK identity mismatch com.jlwockee.iMPlayer vs com.ninja.ninjabox unresolved; closed without implementation. Do not copy a different build's ID.",
@@ -13513,7 +13589,22 @@
         "https://github.com/PRProd/HA-Firemote/issues/409#issuecomment-2125569079",
         "https://github.com/PRProd/HA-Firemote/issues/409#issuecomment-2127695109",
         "https://github.com/PRProd/HA-Firemote/issues/409#issuecomment-2127996120"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "ninja",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The candidate Team Ninja site advertises live TV but does not independently establish an accountable content operator or connect a verified official programming service to the requested build. The issue also records conflicting com.jlwockee.iMPlayer versus com.ninja.ninjabox identities. An APK link and advertising alone do not resolve that identity."
+        },
+        {
+          "catalogId": "ninja-ninjabox",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The observed com.ninja.ninjabox package is not independently connected by a primary publisher/operator source to a verified television provider. Team Ninja's candidate site gives generic TV advertising and the linked APK was reported under a different package; preserving an observed package as a separate entry does not supply the missing provider proof."
+        }
+      ],
+      "priorImplementationStatus": "partially-implemented"
     },
     {
       "issue": 411,
@@ -15491,6 +15582,14 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/451#issuecomment-2195196590"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "direktesport",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact package no.amedia.direktesport is published by Amedia Produkt og Teknologi and supplies live and recorded sports programming. Provider identity is established; launch compatibility is not."
+        }
       ]
     },
     {
@@ -18754,7 +18853,8 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/557#issuecomment-2499149261"
-      ]
+      ],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 558,
@@ -20232,13 +20332,14 @@
         "tvlauncher"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "tvlauncher",
           "family": "apple-tv",
-          "status": "blocked-missing-evidence",
-          "blocker": "Apple lookup verifies bundle app.FootWare.LiveTV, but no installed tvOS source or supported deep link is known. Store title is not a launch source."
+          "status": "excluded-by-provider-policy",
+          "blocker": "Adam Foot's requested App Store listing describes a TV guide and streaming shortcuts that open channels in other installed apps. It requires those apps to watch; TV Launcher itself is not their broadcaster or programming provider.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "Linked TV Launcher live UK channels, not the built-in Apple TV app. TV Launcher is absent from supplied source_list; maintainer's Apple TV suggestion does not resolve this request.",
@@ -20258,7 +20359,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/607#issuecomment-3123366005"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "tvlauncher",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Adam Foot's requested App Store listing describes a TV guide and streaming shortcuts that open channels in other installed apps. It requires those apps to watch; TV Launcher itself is not their broadcaster or programming provider."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 608,
@@ -20314,6 +20424,14 @@
         "https://github.com/PRProd/HA-Firemote/issues/608#issuecomment-3123405632",
         "https://github.com/PRProd/HA-Firemote/issues/608#issuecomment-3123456744",
         "https://github.com/PRProd/HA-Firemote/issues/608#issuecomment-3568073796"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "skych",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact homedia.sky.sport package is published by Sky Switzerland and combines Sky Sport live events, Sky Show series/films and Sky Store rentals. It is the official Swiss provider app; reported Chromecast/architecture problems remain unverified."
+        }
       ]
     },
     {
@@ -20569,7 +20687,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "telenorstream",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact se.telenor.stream package is published by Telenor Sweden and provides TV customers their subscribed television content. The publisher explicitly identifies an Android TV edition, independently connecting this app to the telecom TV service."
+        }
+      ]
     },
     {
       "issue": 615,
@@ -20651,7 +20777,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "servustvon",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested App Store ID is published by Red Bull and describes the ServusTV On streaming platform with live sports, news, films, documentaries and talk shows. It is the broadcaster's own content app."
+        }
+      ]
     },
     {
       "issue": 618,
@@ -20752,7 +20886,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "magic-tv-ocilion",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact com.ocilion.magictv listing is published by kabelplus GmbH and describes its television channels, replay and video library. The Ocilion package namespace is a platform implementation detail, not evidence that this is a generic player. Claimed Fire activities remain unverified."
+        }
+      ]
     },
     {
       "issue": 620,
@@ -20858,7 +21000,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "plexpreview",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Plex's official staff release thread distributes its Roku Preview channel, including on-demand and Live TV functionality. Plex itself supplies a film/TV/live-channel catalog; this official preview variant is distinct from third-party Plex clients."
+        }
+      ]
     },
     {
       "issue": 625,
@@ -20953,7 +21103,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tivify",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.tvup.tivify.app.tv package is published by TV Up Streaming Media S.L. and supplies a television channel lineup plus on-demand films and series. It provides programming, rather than merely accepting a user's IPTV playlist."
+        }
+      ]
     },
     {
       "issue": 627,
@@ -21001,7 +21159,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tivify",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.tvup.tivify.app.tv package is published by TV Up Streaming Media S.L. and supplies a television channel lineup plus on-demand films and series. It provides programming, rather than merely accepting a user's IPTV playlist."
+        }
+      ]
     },
     {
       "issue": 628,
@@ -21049,7 +21215,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "kick",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact com.kick.mobile listing is published by KICK - Live Streaming and describes KICK's hosted live creator-video service, with links to kick.com. It is a content service, even though some programming concerns gaming; launch support remains unverified."
+        }
+      ]
     },
     {
       "issue": 629,
@@ -21097,7 +21271,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "mtvkatsomo",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact fi.mtvkatsomo listing is published by MTV3 and supplies MTV3, Sub and AVA broadcasts and on-demand shows. This is Finland's MTV service, not an unrelated playlist app."
+        }
+      ]
     },
     {
       "issue": 630,
@@ -21145,7 +21327,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "ruutu",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.thirdpresence.ruutu listing is published by Sanoma Media Finland and supplies Nelonen, Jim, Liv and Hero shows, plus films, original series and sports. The thirdpresence package namespace does not make this official listing an unrelated third-party client."
+        }
+      ]
     },
     {
       "issue": 631,
@@ -21193,7 +21383,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "yleareena",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.yle.webtv package is published by Yleisradio Oy. It supplies the public broadcaster's series, films, documentaries and live TV channels, with an Android TV edition explicitly described."
+        }
+      ]
     },
     {
       "issue": 632,
@@ -21291,7 +21489,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "spectrumnews",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Charter's corporate announcement explicitly identifies its own Spectrum News app for Roku and Apple TV with live local news and original programming. It independently verifies the requested TV app and broadcaster relationship."
+        }
+      ]
     },
     {
       "issue": 634,
@@ -21305,13 +21511,14 @@
         "pooya-tv"
       ],
       "auditStatus": "integration_issue",
-      "implementationStatus": "investigation-required",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "pooya-tv",
           "family": "chromecast",
-          "status": "blocked-missing-evidence",
-          "blocker": "Only custom intent action androidx.media3.demo.main.action.VIEW is known; actual app package or a fully specified working custom action is required."
+          "status": "excluded-by-provider-policy",
+          "blocker": "The request author describes Pooya TV as a private family application not published in an app store. No independent provider operator or supplied programming catalog was verified. A Media3 demo VIEW action establishes a player action, not a broadcaster identity.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "Custom launchers already support HA actions. Comment supplies intent action androidx.media3.demo.main.action.VIEW, not a package identifier. Document custom launcher example and slot availability; native Pooya preset needs actual app identity/launch metadata.",
@@ -21330,7 +21537,16 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/634#issuecomment-2660382471",
         "https://github.com/PRProd/HA-Firemote/issues/634#issuecomment-2716270943"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "pooya-tv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The request author describes Pooya TV as a private family application not published in an app store. No independent provider operator or supplied programming catalog was verified. A Media3 demo VIEW action establishes a player action, not a broadcaster identity."
+        }
+      ],
+      "priorImplementationStatus": "investigation-required"
     },
     {
       "issue": 636,
@@ -21376,6 +21592,14 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/636#issuecomment-2624625024"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "wsbtv2",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.cmgdigital.wsbtvhandset listing is published by Cox Media Group Inc. as WSB-TV News and carries the Channel 2 newsroom's coverage/video. This is the broadcaster's official app; its handset package/device compatibility still requires launch testing."
+        }
       ]
     },
     {
@@ -21445,7 +21669,8 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "legacyUtilityPolicy": "Existing YAML preserved; VPN entries are hidden from new selections."
     },
     {
       "issue": 646,
@@ -21460,13 +21685,14 @@
         "dreamplayer"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "dreamplayer",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The developer's official setup guide describes a client requiring the user's Enigma2 satellite/cable receiver; the exact de.cyberdream.dreamepg.tv.player store entry identifies the same receiver client. It supplies no programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -21494,7 +21720,16 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/646#issuecomment-2682658891",
         "https://github.com/PRProd/HA-Firemote/issues/646#issuecomment-3852538785"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "dreamplayer",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The developer's official setup guide describes a client requiring the user's Enigma2 satellite/cable receiver; the exact de.cyberdream.dreamepg.tv.player store entry identifies the same receiver client. It supplies no programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 648,
@@ -21532,7 +21767,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "virgintvgo",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The official Virgin Media App Store listing identifies Virgin TV Go for Apple TV and supplies live and on-demand television to Virgin TV subscribers. This connects the specific requested app to the pay-TV operator."
+        }
+      ]
     },
     {
       "issue": 653,
@@ -21547,13 +21790,14 @@
         "ip-cam-viewer-paid"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "ip-cam-viewer-paid",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Robert Chou's exact com.rcreations.WebCamViewerPaid listing is IP Cam Viewer Pro, a utility for remotely accessing cameras, DVRs, network recorders and webcams. It supplies no television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Original body accidentally contains DAKboard's Amazon web wrapper. Requester corrects this in comment 2715455425 to com.rcreations.WebCamViewerPaid/com.rcreations.WebCamViewerPaid.MatrixViewActivity. This is the PAID variant, separate from ip-cam-viewer-free; group with #694.",
@@ -21599,7 +21843,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/653#issuecomment-2715455425"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "ip-cam-viewer-paid",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Robert Chou's exact com.rcreations.WebCamViewerPaid listing is IP Cam Viewer Pro, a utility for remotely accessing cameras, DVRs, network recorders and webcams. It supplies no television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 655,
@@ -21653,7 +21906,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "frndly-tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Frndly's own site lists its live/on-demand channel service and supported television devices; Roku's official announcement also identifies and links the Frndly TV app in its store. This is a programming subscription service, not a generic player."
+        }
+      ]
     },
     {
       "issue": 658,
@@ -21733,7 +21994,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "youseeplay",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested App Store ID is published by TDC Brands A/S as YouSee Play for Apple TV and supplies subscribers live channels, catch-up, films and series. This independently connects the app to the Danish TV operator."
+        }
+      ]
     },
     {
       "issue": 661,
@@ -21748,13 +22017,14 @@
         "nozomi"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "nozomi",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The request supplies com.nozomi and an inaccessible download short link. Distributor installation material and reseller pages describe a Japanese-TV product, but do not independently identify its underlying programming operator or official publisher connection for this package. Provider identity remains unverified, without any finding of illegality.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -21777,7 +22047,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "nozomi",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The request supplies com.nozomi and an inaccessible download short link. Distributor installation material and reseller pages describe a Japanese-TV product, but do not independently identify its underlying programming operator or official publisher connection for this package. Provider identity remains unverified, without any finding of illegality."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 662,
@@ -21792,13 +22071,14 @@
         "ikortv"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "ikortv",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The request identifies com.iptv2.ikortv and an inaccessible 01203333.com download link. Reseller/distributor material advertises Korean channels, but no independently verifiable primary publisher/operator source connects this specific client to an identified television provider. Do not infer an operator or wrongdoing.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -21821,7 +22101,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "ikortv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The request identifies com.iptv2.ikortv and an inaccessible 01203333.com download link. Reseller/distributor material advertises Korean channels, but no independently verifiable primary publisher/operator source connects this specific client to an identified television provider. Do not infer an operator or wrongdoing."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 663,
@@ -21877,13 +22166,14 @@
         "tunein"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "tunein",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact tunein.player package is published by TuneIn Inc. as TuneIn Radio: Music & Sports. Its product is radio/audio streaming, outside this catalog's film/TV/live-video provider policy.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -21902,7 +22192,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tunein",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact tunein.player package is published by TuneIn Inc. as TuneIn Radio: Music & Sports. Its product is radio/audio streaming, outside this catalog's film/TV/live-video provider policy."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 666,
@@ -21917,13 +22216,14 @@
         "immich-tv"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "immich-tv",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The actual nl.giejay.android.tv.immich project is an Android TV client for self-hosted photos and videos, not a television programming service. The input's app.alextran.immich store link refers to a different app and does not verify this package.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Body reports nl.giejay.android.tv.immich (Android TV client), while linked store app is app.alextran.immich. Use the installed TV client's observed MainActivity after validating launch, not the mobile app package; separate from Apple TV ImmichFrame #674.",
@@ -21957,7 +22257,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "immich-tv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The actual nl.giejay.android.tv.immich project is an Android TV client for self-hosted photos and videos, not a television programming service. The input's app.alextran.immich store link refers to a different app and does not verify this package."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 671,
@@ -22054,13 +22363,14 @@
         "immichframe"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "immichframe",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Rob Rogers's App Store entry identifies a digital photo frame requiring an ImmichFrame server and explicitly disclaims affiliation with Immich; it supplies no television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -22079,7 +22389,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "immichframe",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Rob Rogers's App Store entry identifies a digital photo frame requiring an ImmichFrame server and explicitly disclaims affiliation with Immich; it supplies no television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 675,
@@ -22119,7 +22438,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "vidangel",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested App Store listing is published by VidAngel Entertainment, LLC and includes Angel Studios programming in its subscription. VidAngel's own help page confirms it distributes some Angel content while focusing on filtering. Retain for that supplied catalog; VidAngel and Angel Studios are separate companies."
+        }
+      ]
     },
     {
       "issue": 676,
@@ -22231,13 +22558,14 @@
         "iptvstreamplayer"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "iptvstreamplayer",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact com.digitalseva.iptvplayer developer listing identifies Digital.Seva and explicitly says the app contains no media content and users must add their own. It is playback software, not a programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -22272,7 +22600,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "iptvstreamplayer",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.digitalseva.iptvplayer developer listing identifies Digital.Seva and explicitly says the app contains no media content and users must add their own. It is playback software, not a programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 681,
@@ -22333,7 +22670,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "vodafone-tv-pt",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.vodafone.vtv.atv.pt package is an official Vodafone TV listing with vodafone.pt support and Vodafone Group publisher details. It provides Vodafone subscribers live channels, catch-up, recordings and films/series; this directly verifies the Portuguese Android TV variant."
+        }
+      ]
     },
     {
       "issue": 682,
@@ -22348,13 +22693,14 @@
         "x3mplayer"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "x3mplayer",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact app.xeev.xeplayer listing by Neat IT Solutions GmbH says X3M Player downloads and plays the user's XEEV playlists, which are required to use it. XEEV describes playlist-management software, not a supplied TV programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -22385,7 +22731,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "x3mplayer",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact app.xeev.xeplayer listing by Neat IT Solutions GmbH says X3M Player downloads and plays the user's XEEV playlists, which are required to use it. XEEV describes playlist-management software, not a supplied TV programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 683,
@@ -22448,7 +22803,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "freespeechtv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Free Speech TV's own app page identifies its custom television-content apps and explicitly lists Roku and Apple TV, connecting both requested clients to the broadcaster. This does not verify Roku ID 9060 or device launching."
+        }
+      ]
     },
     {
       "issue": 684,
@@ -22463,13 +22826,14 @@
         "hydravion"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "hydravion",
           "family": "roku",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The Hydravion project's own description says it is an unofficial Roku client for Floatplane and is not associated with Floatplane Media. Floatplane's provider identity does not make this client official.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -22504,7 +22868,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/684#issuecomment-3868611784"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "hydravion",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The Hydravion project's own description says it is an unofficial Roku client for Floatplane and is not associated with Floatplane Media. Floatplane's provider identity does not make this client official."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 686,
@@ -22519,13 +22892,14 @@
         "function-screen-mirroring"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "function-screen-mirroring",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Amazon's official help identifies Display Mirroring as reflecting a user's Miracast device screen on Fire TV. This is a device function, not a programming provider or channel.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "System display mirroring rather than a store app. Explicit command com.amazon.cast.sink/.DisplayMirroringSinkActivity supplied. #348 confirmed ADB/network control can be lost in Miracast mode; acceptance must include recovery via physical remote.",
@@ -22548,7 +22922,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "function-screen-mirroring",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Amazon's official help identifies Display Mirroring as reflecting a user's Miracast device screen on Fire TV. This is a device function, not a programming provider or channel."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 689,
@@ -22589,7 +22972,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "joyn-at",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact package com.zappntv is now listed as Joyn Austria by ProSiebenSat.1 PULS 4 GmbH and supplies live channels and on-demand shows. It is the official Austrian provider variant."
+        }
+      ]
     },
     {
       "issue": 691,
@@ -22604,13 +22995,14 @@
         "microiptv"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "microiptv",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Toderici Octavian's official App Store listing describes playback of M3U8 and OTT playlists from the user's IPTV provider. MicroIPTV is the client, not that provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Individual request has no tvOS source, but same App Store id 6469873633 appears in #804 with source MicroIPTV. Use #804 as cross-request evidence, then verify on device.",
@@ -22629,7 +23021,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "microiptv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Toderici Octavian's official App Store listing describes playback of M3U8 and OTT playlists from the user's IPTV provider. MicroIPTV is the client, not that provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 694,
@@ -22644,13 +23045,14 @@
         "ip-cam-viewer-paid"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "ip-cam-viewer-paid",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Robert Chou's exact com.rcreations.WebCamViewerPaid listing is IP Cam Viewer Pro, a utility for remotely accessing cameras, DVRs, network recorders and webcams. It supplies no television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Paid IPCam is com.rcreations.WebCamViewerPaid; same corrected identity as #653. Keep separate from Free app and DAKboard.",
@@ -22674,7 +23076,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "ip-cam-viewer-paid",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Robert Chou's exact com.rcreations.WebCamViewerPaid listing is IP Cam Viewer Pro, a utility for remotely accessing cameras, DVRs, network recorders and webcams. It supplies no television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 695,
@@ -22689,13 +23100,14 @@
         "emby-android"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "emby-android",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Emby Media's own listing describes organizing and streaming the user's personal media and requires an Emby Server; live TV requires a user-supplied tuner. This official software app supplies no programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Emby Android mobile/unified app com.mb.android/com.mb.android.MainActivity differs from existing tv.emby.embyatv Android TV preset. Requester reports successful HA select_source workaround for the new package; preserve both installs.",
@@ -22723,7 +23135,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "emby-android",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Emby Media's own listing describes organizing and streaming the user's personal media and requires an Emby Server; live TV requires a user-supplied tuner. This official software app supplies no programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 696,
@@ -22763,7 +23184,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "monumental",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "App Store id1082655562 is published by Monumental Sports & Entertainment and supplies its regional sports network's live games, 24/7 feed, replays and original series on Apple TV."
+        }
+      ]
     },
     {
       "issue": 697,
@@ -22811,7 +23240,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "zapping",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.eltelon.zapping package is published by Zapping TV, Inc. It supplies its own subscription channel lineup and live sports; the package namespace is tied directly to the operator by the official store listing."
+        }
+      ]
     },
     {
       "issue": 699,
@@ -22863,13 +23300,14 @@
         "vradio"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "vradio",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact com.ilv.vradio package is published by Voulimiotis Ioannis as VRadio - Online Radio App. Its function is internet-radio listening, outside the TV/video-provider policy.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "VRadio package com.ilv.vradio and component com.ilv.vradio/com.ilv.vradiotv.MainActivity are in the device dump and store URL. Optional com.ilv.radio is a typo, not another identifier.",
@@ -22896,7 +23334,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "vradio",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.ilv.vradio package is published by Voulimiotis Ioannis as VRadio - Online Radio App. Its function is internet-radio listening, outside the TV/video-provider policy."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 701,
@@ -22963,13 +23410,14 @@
         "babycam"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "babycam",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "ArjonaSoftware's exact package is a baby-monitor camera utility that connects the user's devices; Chromecast support does not make it a programming provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Body shows ClientActivity, but comment 2993611499 supplies SplashScreenActivity as the launch candidate. Use com.arjonasoftware.babycam/com.arjonasoftware.babycam.SplashScreenActivity only after cold/warm validation; no explicit success confirmation.",
@@ -23003,7 +23451,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/702#issuecomment-2993611499"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "babycam",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "ArjonaSoftware's exact package is a baby-monitor camera utility that connects the user's devices; Chromecast support does not make it a programming provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 703,
@@ -23049,7 +23506,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "talksport",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "News UK's own announcement documents talkSPORT's 24/7 FAST video channel and official smart-TV app on Fire TV, Apple TV and Google TV. The requested CTV app qualifies as a video broadcaster; this decision does not rely on the audio-only radio service."
+        }
+      ]
     },
     {
       "issue": 704,
@@ -23145,6 +23610,14 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/705#issuecomment-3022970071"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "anigamer",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact tw.com.gamer.android.animad listing is published by Bahamut and describes its authorized anime streaming catalog and simulcasts. It is the provider's own content app; device launch remains unverified."
+        }
       ]
     },
     {
@@ -23160,13 +23633,14 @@
         "pxplayremoteplay"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "pxplayremoteplay",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The psplay.grill.com listing by GF Frame Technologies (Streaming Dev) describes PXPlay as remote control and game streaming from the user's gaming device. It is a gaming Remote Play utility, not a TV content provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "PXPlay: requester explicitly says psplay.grill.com/com.grill.psplay.MainActivity works and HomeActivity from the foreground dump does not. Test MainActivity; do not adopt HomeActivity.",
@@ -23199,7 +23673,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "pxplayremoteplay",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The psplay.grill.com listing by GF Frame Technologies (Streaming Dev) describes PXPlay as remote control and game streaming from the user's gaming device. It is a gaming Remote Play utility, not a TV content provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 708,
@@ -23247,7 +23730,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tod",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.todtv.tod listing identifies TOD by beIN, its official publisher and beIN's Doha address. It supplies live sports, beIN channels, films and series for MENA, establishing a content service and its own app."
+        }
+      ]
     },
     {
       "issue": 709,
@@ -23298,7 +23789,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "cnbc",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The App Store entry identifies CNBC's app, publisher Versant Media LLC, Apple TV support, CNBC television livestreams and full episodes. Its finance-news features do not negate the broadcaster's video service; no YouTube bundle identity should be attached to it."
+        }
+      ]
     },
     {
       "issue": 710,
@@ -23393,6 +23892,14 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/712#issuecomment-3145532258"
+      ],
+      "providerReview": [
+        {
+          "catalogId": "unsersandmannchen",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "rbb's own press release explicitly describes its Sandmann app for Amazon Fire TV carrying the broadcaster's episodes. The official RBB app listing also supplies daily episodes and a video library. This is broadcaster programming, even though the mobile edition includes games."
+        }
       ]
     },
     {
@@ -23441,7 +23948,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "beeline-tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Beeline's own site describes its television channels, films and series and Android TV app. Its June 2026 notice describes migration to Popcorn Beeline; retain as an official provider identity/legacy variant, without asserting current operation or validating ru.beeline.tve.android launch."
+        }
+      ]
     },
     {
       "issue": 714,
@@ -23456,13 +23971,14 @@
         "adguardvpn"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "adguardvpn",
           "family": "xiaomi",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "AdGuard Software Limited's official com.adguard.vpn listing describes traffic encryption, IP masking and VPN connections; it supplies no television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -23489,7 +24005,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "adguardvpn",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "AdGuard Software Limited's official com.adguard.vpn listing describes traffic encryption, IP masking and VPN connections; it supplies no television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 715,
@@ -23538,7 +24063,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "vk-video-tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.vk.tv package is published by VK LLC as VK Video for Android TV. It supplies shows, films, series, online television and live broadcasts. This verifies the TV app directly, without substituting the linked mobile package."
+        }
+      ]
     },
     {
       "issue": 716,
@@ -23587,7 +24120,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "rutube-tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact ru.rutube.app package is published in RuStore by RUFORM and supplies video, films, series, live streams and online TV. This connects the requested package to RUTUBE; TV-device launch/layout remains separate from provider identity."
+        }
+      ]
     },
     {
       "issue": 718,
@@ -23659,7 +24200,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "zapping",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.eltelon.zapping package is published by Zapping TV, Inc. It supplies its own subscription channel lineup and live sports; the package namespace is tied directly to the operator by the official store listing."
+        }
+      ]
     },
     {
       "issue": 719,
@@ -23674,13 +24223,14 @@
         "iptv-android"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "iptv-android",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Alexander Sofronov's exact ru.iptvremote.android.iptv listing supports user-supplied playlists and explicitly says it contains no built-in channels.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -23707,7 +24257,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "iptv-android",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Alexander Sofronov's exact ru.iptvremote.android.iptv listing supports user-supplied playlists and explicitly says it contains no built-in channels."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 721,
@@ -23722,13 +24281,14 @@
         "opus-iptv"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "opus-iptv",
           "family": "apple-tv",
-          "status": "blocked-missing-evidence",
-          "blocker": "Apple lookup verifies bundle com.handy.optus. Exact installed tvOS source or a supported deep link is still required."
+          "status": "excluded-by-provider-policy",
+          "blocker": "BIEL LLC's App Store description says Opus plays the user's M3U/Xtream playlists and neither supplies nor hosts channels or streams. It is a playlist player, not a TV programming provider.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "OPUS App Store id 1592313576 identifies the product but no tvOS source_list/app_name/deep link was supplied. Do not infer launch name from store title.",
@@ -23746,7 +24306,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "opus-iptv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "BIEL LLC's App Store description says Opus plays the user's M3U/Xtream playlists and neither supplies nor hosts channels or streams. It is a playlist player, not a TV programming provider."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 722,
@@ -23887,13 +24456,14 @@
         "streamshow"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "streamshow",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact package is published by devinterestdev as StreamShow - ONVIF RTSP viewer. It displays and records user-added camera/network streams, including multiple cameras; it is not a service supplying TV programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Store supplies package com.devinterestdev.streamshow only; no tested activity. Try package-based launch in the selected Android integration, then capture result; do not invent a component.",
@@ -23912,7 +24482,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "streamshow",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact package is published by devinterestdev as StreamShow - ONVIF RTSP viewer. It displays and records user-added camera/network streams, including multiple cameras; it is not a service supplying TV programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 727,
@@ -24152,13 +24731,14 @@
         "legionanimefull"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "blocked-missing-evidence",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "legionanimefull",
           "family": "xiaomi",
-          "status": "blocked-missing-evidence",
-          "blocker": "APK landing page supplies no verified package, exported launcher, or working action. The primary APK page was inaccessible during implementation."
+          "status": "excluded-by-provider-policy",
+          "blocker": "The requested site's own footer identifies Aplicaciones Paleta and states that Legion Anime stores/hosts no content and uses third-party links/access; its site links a separate FULL APK. This establishes a community/third-party aggregator, not a verified first-party television programming provider. No illegality is asserted.",
+          "priorStatus": "blocked-missing-evidence"
         }
       ],
       "auditFinding": "Legion Anime Full APK download URL supplied, but no package, component or tested action. Keep as evidence-gated request.",
@@ -24174,7 +24754,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "legionanimefull",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested site's own footer identifies Aplicaciones Paleta and states that Legion Anime stores/hosts no content and uses third-party links/access; its site links a separate FULL APK. This establishes a community/third-party aggregator, not a verified first-party television programming provider. No illegality is asserted."
+        }
+      ],
+      "priorImplementationStatus": "blocked-missing-evidence"
     },
     {
       "issue": 734,
@@ -24191,19 +24780,21 @@
         "proton-vpn"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "omni-content-hub",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The actual Omni Content Hub developer site links App Store id6741470807 and describes using users' media with catalogs/streams from Stremio add-ons and built-in/external players. It is a media/add-on hub rather than a television programming provider; it must not be confused with Omni TV or Omni Fiber.",
+          "priorStatus": "candidate-implemented"
         },
         {
           "catalogId": "proton-vpn",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Two apps: Omni source Omni and Proton VPN source Proton VPN. Comment 3482845655 resolves Omni identity to Omni - Content Hub, App Store id 6741470807. Do not retain the obsolete ambiguity or merge with Omni Fiber/Omni TV.",
@@ -24224,7 +24815,22 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/734#issuecomment-3418874381",
         "https://github.com/PRProd/HA-Firemote/issues/734#issuecomment-3482845655"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "omni-content-hub",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The actual Omni Content Hub developer site links App Store id6741470807 and describes using users' media with catalogs/streams from Stremio add-ons and built-in/external players. It is a media/add-on hub rather than a television programming provider; it must not be confused with Omni TV or Omni Fiber."
+        },
+        {
+          "catalogId": "proton-vpn",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 736,
@@ -24479,7 +25085,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "shudder",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested App Store listing is published by AMC Networks Inc. and supplies its curated horror film and series streaming catalog. This is a first-party subscription video service."
+        }
+      ]
     },
     {
       "issue": 751,
@@ -24527,7 +25141,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "fizztv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Fizz's own support page explicitly identifies its Fizz TV app for Amazon Fire TV and explains activation against the subscriber's Fizz TV plan, connecting the specific branded Fire client to its programming service. The VMedia Inc store listing corroborates the app/operator. Exact Fire package ca.fizz_app.tv.amazon and launch behavior remain technical metadata requiring validation."
+        }
+      ]
     },
     {
       "issue": 753,
@@ -24581,7 +25203,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "cbs",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "CBS's own site supplies its network's programming and Roku activation. This establishes CBS's official Roku client; the requested numeric Roku ID and Home Assistant launch action are not device-verified."
+        }
+      ]
     },
     {
       "issue": 754,
@@ -24642,7 +25272,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "zitotv2go",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Zito Media's installation guide names its ZitoTV2Go service, and the official store listings describe supplied live TV and recordings for Zito subscribers. The Apple listing identifies Intracom as its technology publisher; this is an operator-backed app, not an anonymous generic IPTV client."
+        }
+      ]
     },
     {
       "issue": 755,
@@ -24758,7 +25396,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "youtv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The request's linked help page belongs to the German YouTV service and documents supplied German TV recordings available for streaming. Its own operator page identifies NETlantic GmbH. This is a cloud-TV/catch-up content service, not an unidentified playlist client or another similarly named YouTV."
+        }
+      ]
     },
     {
       "issue": 759,
@@ -24818,7 +25464,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "kayo-fire-legacy",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact requested package au.com.kayosports.tv has an official Google Play listing published by Hubbl Pty Ltd, describing Kayo's live/on-demand sports service and linking kayosports.com.au. This verifies the specific client identity; use on Fire devices and the catalog's legacy label are separate unverified compatibility/lifecycle questions."
+        }
+      ]
     },
     {
       "issue": 760,
@@ -24900,7 +25554,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "free-tv-fr",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "App Store id1542614107 is published by Free and provides French live channels, films and replay. This is the French provider's official app, distinct from the Israeli FreeTV identity; Apple TV launching is not verified."
+        }
+      ]
     },
     {
       "issue": 763,
@@ -24915,13 +25577,14 @@
         "radioreceiver"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "radioreceiver",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The official appsolute GmbH listing describes Receiver as internet radio, podcasts and a radio alarm. Its Apple TV edition remains an audio/radio service outside the requested TV/video-provider scope.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Store title Radio - Receiver; exact tvOS source is Receiver. Empty app_id is not a blocker for select_source.",
@@ -24946,7 +25609,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "radioreceiver",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The official appsolute GmbH listing describes Receiver as internet radio, podcasts and a radio alarm. Its Apple TV edition remains an audio/radio service outside the requested TV/video-provider scope."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 765,
@@ -24961,13 +25633,14 @@
         "proton-vpn"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "proton-vpn",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Proton VPN Shield package ch.protonvpn.android with TvMainActivity supplied. Cross-platform siblings #734 tvOS and #817 Fire; #817 explicitly reports working custom launcher.",
@@ -24994,7 +25667,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "proton-vpn",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 767,
@@ -25012,7 +25694,7 @@
         "smart-tube-next-beta-legacy"
       ],
       "auditStatus": "regression",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "partially-implemented-provider-policy",
       "familyStates": [
         {
           "catalogId": "smart-tube-next",
@@ -25029,14 +25711,16 @@
         {
           "catalogId": "smart-tube-next-legacy",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging.",
+          "priorStatus": "candidate-implemented"
         },
         {
           "catalogId": "smart-tube-next-beta-legacy",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. A legacy beta package is still an unofficial YouTube client; being an old alias does not make this newly added ID an official provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Both SmartTube stable/beta packages changed to org.smarttube.stable and org.smarttube.beta. Body observes Beta BrowseActivity, not a verified cold-launch activity. #856 supplies tested Fire Beta SplashActivity; test Chromecast separately.",
@@ -25064,7 +25748,22 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/767#issuecomment-3751836583"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "smart-tube-next-legacy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging."
+        },
+        {
+          "catalogId": "smart-tube-next-beta-legacy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. A legacy beta package is still an unofficial YouTube client; being an old alias does not make this newly added ID an official provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 769,
@@ -25104,7 +25803,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "shudder",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested App Store listing is published by AMC Networks Inc. and supplies its curated horror film and series streaming catalog. This is a first-party subscription video service."
+        }
+      ]
     },
     {
       "issue": 770,
@@ -25119,13 +25826,14 @@
         "symfonium"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "symfonium",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact package listing by Tolriq / Genimee describes a music player for local files, cloud storage and users' media servers. It is an audio/music utility, not a film/TV/live-video content provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -25152,7 +25860,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "symfonium",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact package listing by Tolriq / Genimee describes a music player for local files, cloud storage and users' media servers. It is an audio/music utility, not a film/TV/live-video content provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 771,
@@ -25208,13 +25925,14 @@
         "iptvexpert"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "iptvexpert",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The LIFTOFF App Store listing describes an IPTV player that imports users' M3U/Xtream/Stalker sources; it is playback software rather than a programming provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -25236,7 +25954,16 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/773#issuecomment-3921697495",
         "https://github.com/PRProd/HA-Firemote/issues/773#issuecomment-3922317724"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "iptvexpert",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The LIFTOFF App Store listing describes an IPTV player that imports users' M3U/Xtream/Stalker sources; it is playback software rather than a programming provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 775,
@@ -25284,7 +26011,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tele2play",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact com.tivo.android.comhem listing is published by Tele2 AB as Tele2 Play and offers the operator's TV streaming service. The inherited Com Hem/TiVo package namespace does not identify an unrelated client."
+        }
+      ]
     },
     {
       "issue": 776,
@@ -25394,7 +26129,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "free-tv-fr",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "App Store id1542614107 is published by Free and provides French live channels, films and replay. This is the French provider's official app, distinct from the Israeli FreeTV identity; Apple TV launching is not verified."
+        }
+      ]
     },
     {
       "issue": 778,
@@ -25443,13 +26186,14 @@
         "wholphin"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "wholphin",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The damontecres project describes Wholphin as an open-source Android TV client for Jellyfin. It is a separate developer's media-server client, rather than Jellyfin's own app or an independently supplied TV programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Wholphin package com.github.damontecres.wholphin supplied; commenter shows select_source custom launcher and #831 confirms it works. Group #779/#831, keep separate from Jellyfin/Swiftfin.",
@@ -25477,7 +26221,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/779#issuecomment-5708987638"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "wholphin",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The damontecres project describes Wholphin as an open-source Android TV client for Jellyfin. It is a separate developer's media-server client, rather than Jellyfin's own app or an independently supplied TV programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 780,
@@ -25592,13 +26345,14 @@
         "senplayer"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "senplayer",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The App Store publisher describes SenPlayer as a personal media player for local storage, NAS, cloud drives and Plex/Emby/Jellyfin servers. It supplies player access to users' sources, not its own TV programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Exact tvOS source is SenPlayer (capital S). Active YouTube TV bundle id is unrelated. Add source-based launcher only.",
@@ -25628,7 +26382,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "senplayer",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The App Store publisher describes SenPlayer as a personal media player for local storage, NAS, cloud drives and Plex/Emby/Jellyfin servers. It supplies player access to users' sources, not its own TV programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 787,
@@ -25676,7 +26439,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "dreitv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact package com.drei.tv is published by Hutchison Drei Austria GmbH and supplies live Austrian television channels plus replay; this is an official telecom television service."
+        }
+      ]
     },
     {
       "issue": 788,
@@ -25811,7 +26582,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "victory-plus",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact tv.apmc.android.victorysports package is published by A Parent Media Co. Inc. and provides live sports broadcasts, replays and on-demand team programming. It is the provider's official streaming app."
+        }
+      ]
     },
     {
       "issue": 791,
@@ -25867,7 +26646,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "victory-plus",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact tv.apmc.android.victorysports package is published by A Parent Media Co. Inc. and provides live sports broadcasts, replays and on-demand team programming. It is the provider's official streaming app."
+        }
+      ]
     },
     {
       "issue": 792,
@@ -25913,7 +26700,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "victory-plus",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact tv.apmc.android.victorysports package is published by A Parent Media Co. Inc. and provides live sports broadcasts, replays and on-demand team programming. It is the provider's official streaming app."
+        }
+      ]
     },
     {
       "issue": 793,
@@ -26016,7 +26811,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "sledovanitv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact cz.sledovanitv.android listing under ModernTV offers the SledovaniTV internet television service with supplied channels, catch-up and recordings. This verifies the requested service app rather than treating a similarly named white-label client as interchangeable."
+        }
+      ]
     },
     {
       "issue": 798,
@@ -26060,7 +26863,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "soop",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact kr.co.afreecatv.atv package is listed as SOOP for Android TV by SOOP Co., Ltd., supplying the operator's live streaming platform. This is a first-party SOOP/AfreecaTV app, despite the unrelated issue-title branding."
+        }
+      ]
     },
     {
       "issue": 799,
@@ -26075,13 +26886,14 @@
         "chzzk"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "chzzk",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The client project's README explicitly identifies an unofficial CHZZK Android TV app; its build file matches com.escaperbgp.unofficial_chzzk_android_tv. The existence of NAVER's official CHZZK service does not validate this unrelated client or any legacy alias.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -26104,7 +26916,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "chzzk",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The client project's README explicitly identifies an unofficial CHZZK Android TV app; its build file matches com.escaperbgp.unofficial_chzzk_android_tv. The existence of NAVER's official CHZZK service does not validate this unrelated client or any legacy alias."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 800,
@@ -26193,7 +27014,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "wavve",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact kr.co.captv.pooq.tv package is published by Content Wavve and supplies Korean drama, entertainment and broadcast catch-up video. The legacy pooq package is the provider's official Wavve listing, not an inferred third-party alias."
+        }
+      ]
     },
     {
       "issue": 803,
@@ -26263,13 +27092,14 @@
         "microiptv"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "microiptv",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Toderici Octavian's official App Store listing describes playback of M3U8 and OTT playlists from the user's IPTV provider. MicroIPTV is the client, not that provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "MicroIPTV source supplied; same App Store id as #691. Active Music bundle id is unrelated and must be ignored.",
@@ -26299,7 +27129,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "microiptv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Toderici Octavian's official App Store listing describes playback of M3U8 and OTT playlists from the user's IPTV provider. MicroIPTV is the client, not that provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 805,
@@ -26386,7 +27225,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "hallmark",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact package com.feeln.androidapp is published by Crown Media Holdings Inc; the listing identifies Hallmark Media United States LLC as operator and describes Hallmark films, original series and streaming channels."
+        }
+      ]
     },
     {
       "issue": 808,
@@ -26401,13 +27248,14 @@
         "streamlocator"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "streamlocator",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The exact package is published by StreamLocator as a region-unblocking/VPN app. Its description explicitly says it only unblocks services and still requires subscriptions from the actual content providers.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "No matching native preset in local catalog. Add this app/variant only after validating supplied package/source/channel evidence on the requested platform; never derive an activity from a foreground surface alone.",
@@ -26434,7 +27282,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "streamlocator",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The exact package is published by StreamLocator as a region-unblocking/VPN app. Its description explicitly says it only unblocks services and still requires subscriptions from the actual content providers."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 809,
@@ -26449,13 +27306,14 @@
         "chillio"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "chillio",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Chillio's own site explicitly identifies it as a media player without supplied content; users connect IPTV playlists, cloud services or add-ons.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "tvOS app_name Chillio and bundle com.elsonbaty.chillio supplied. Source-based launch candidate exists; no successful launch report.",
@@ -26485,7 +27343,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "chillio",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Chillio's own site explicitly identifies it as a media player without supplied content; users connect IPTV playlists, cloud services or add-ons."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 810,
@@ -26529,7 +27396,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tcm",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "TCM's own Watch TCM site supplies films, and its official settings/help page names Amazon Fire TV as a Watch TCM app platform. This verifies the requested broadcaster app; the reported com.tcm.apps.tv controller still needs separate device-launch validation."
+        }
+      ]
     },
     {
       "issue": 812,
@@ -26545,7 +27420,7 @@
         "smart-tube-next-legacy"
       ],
       "auditStatus": "regression",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "partially-implemented-provider-policy",
       "familyStates": [
         {
           "catalogId": "smart-tube-next",
@@ -26556,8 +27431,9 @@
         {
           "catalogId": "smart-tube-next-legacy",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Closed with no comments, but request supplies new org.smarttube.stable package. Local still uses com.teamsmart.videomanager.tv. Related open #767/#856; closure did not implement current package.",
@@ -26581,7 +27457,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "smart-tube-next-legacy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 813,
@@ -26596,13 +27481,14 @@
         "swiptv"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "swiptv",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "CreativeMind's requested App Store listing says SWIPTV plays M3U/Xtream playlists and explicitly supplies neither IPTV playlists nor content. Its IPTV-player functions do not establish a TV provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Exact tvOS app/source name is lowercase swiptv; bundle com.Creativemind.swiptv supplied. Keep distinct from Swiftfin.",
@@ -26632,7 +27518,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "swiptv",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "CreativeMind's requested App Store listing says SWIPTV plays M3U/Xtream playlists and explicitly supplies neither IPTV playlists nor content. Its IPTV-player functions do not establish a TV provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 814,
@@ -26728,13 +27623,14 @@
         "proton-vpn"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "proton-vpn",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Fire custom launcher explicitly uses ch.protonvpn.android/com.protonvpn.android.tv.main.TvMainActivity; requester supplies screenshot and working YAML. Group with #765 Shield and #734 tvOS; keep platforms independently verified.",
@@ -26759,7 +27655,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "proton-vpn",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 818,
@@ -26803,7 +27708,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "dnsnettv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "DNS:NET's own installation manual explicitly instructs users to obtain its official DNS:NET TV app from the Amazon Fire TV App Store. Its publisher-identified Android store listing confirms the programming service. This connects the requested branded Fire TV client to the provider, while de.dnsnet.app.stb.amazon and launching still require build/device validation."
+        }
+      ]
     },
     {
       "issue": 819,
@@ -26818,13 +27731,14 @@
         "smarters4su"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "smarters4su",
           "family": "homatics",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "No primary provider website or publisher record was independently verified for com.foursusmarters.foursusmartersiptvbox. The request supplies only a label and foreground player component, with no store/APK link. Do not infer a provider or official Smarters affiliation from the name.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Smarters 4SU package com.foursusmarters.foursusmartersiptvbox is a separate provider-branded build, not interchangeable with IPTV Smarters Pro/Smarters Pro. Foreground player activity supplied; verify exported cold-launch entry.",
@@ -26848,7 +27762,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "smarters4su",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "No primary provider website or publisher record was independently verified for com.foursusmarters.foursusmartersiptvbox. The request supplies only a label and foreground player component, with no store/APK link. Do not infer a provider or official Smarters affiliation from the name."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 821,
@@ -26864,19 +27787,21 @@
         "nuvio-playstore"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "nuvio",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "NuvioMedia's official NuvioTV README describes an open-source media app requiring users to bring their own sources. The official project is software, not a programming provider; the sideloaded distribution does not change that.",
+          "priorStatus": "candidate-implemented"
         },
         {
           "catalogId": "nuvio-playstore",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The official NuvioTV README links Google Play package com.nuvio.app and explicitly requires users' own sources. The Play Store distribution is the same media-client function and supplies no programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "NuvioTV repository link only; no package, component or tested action in request. Obtain manifest/device evidence rather than inventing package from repo name.",
@@ -26894,7 +27819,22 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "nuvio",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "NuvioMedia's official NuvioTV README describes an open-source media app requiring users to bring their own sources. The official project is software, not a programming provider; the sideloaded distribution does not change that."
+        },
+        {
+          "catalogId": "nuvio-playstore",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The official NuvioTV README links Google Play package com.nuvio.app and explicitly requires users' own sources. The Play Store distribution is the same media-client function and supplies no programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 822,
@@ -26909,13 +27849,14 @@
         "tizentube-cobalt"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "tizentube-cobalt",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The requested reisxd project describes a sideloaded Cobalt-based app enhancing a separate streaming website with ad removal and SponsorBlock. It is a third-party viewing client, without an independently supplied film/TV catalog or provider-published app identity.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Tizentube Shield points to the same TizenTubeCobalt repository as #827. Xiaomi #827 supplies package io.gh.reisxd.tizentube.cobalt/dev.cobalt.app.MainActivity; reuse identity, but verify Shield compatibility independently.",
@@ -26932,7 +27873,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "tizentube-cobalt",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested reisxd project describes a sideloaded Cobalt-based app enhancing a separate streaming website with ad removal and SponsorBlock. It is a third-party viewing client, without an independently supplied film/TV catalog or provider-published app identity."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 823,
@@ -27013,7 +27963,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "magenta-tv-gen1",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact de.telekom.magentatv.atv listing is published by Telekom Deutschland GmbH, expressly names the first-generation service and limits it to tariffs booked before 15 February 2024. This is an official generation variant; it must not be merged with the newer client or called device-tested."
+        }
+      ]
     },
     {
       "issue": 825,
@@ -27053,7 +28011,15 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "o2tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "App Store id6460936474 is published by Telefonica Germany GmbH & Co. OHG, supports Apple TV, and supplies live channels, replay and films. This verifies the German provider, without validating the exact device source string."
+        }
+      ]
     },
     {
       "issue": 826,
@@ -27068,13 +28034,14 @@
         "iptvsmarterstvlogik"
       ],
       "auditStatus": "missing_variant",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "iptvsmarterstvlogik",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "No primary publisher/operator source establishes com.nst.iptvsmarterstvlogik as an official television service client. The request's Downloader code 6468112 currently resolves to a general IPTV Smarters APK, which does not independently identify this named build or a programming provider. Do not substitute another Smarters app's identity.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "IPTV Smarters TV Logik package com.nst.iptvsmarterstvlogik distinct from other Smarters builds. Ignore trailing SmartTube input-method focus as unrelated; verify package's exported main activity.",
@@ -27110,7 +28077,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "iptvsmarterstvlogik",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "No primary publisher/operator source establishes com.nst.iptvsmarterstvlogik as an official television service client. The request's Downloader code 6468112 currently resolves to a general IPTV Smarters APK, which does not independently identify this named build or a programming provider. Do not substitute another Smarters app's identity."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 827,
@@ -27125,13 +28101,14 @@
         "tizentube-cobalt"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "tizentube-cobalt",
           "family": "xiaomi",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The requested reisxd project describes a sideloaded Cobalt-based app enhancing a separate streaming website with ad removal and SponsorBlock. It is a third-party viewing client, without an independently supplied film/TV catalog or provider-published app identity.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "TizenTube Cobalt runs on requested Xiaomi Android, despite its name. Literal package/component io.gh.reisxd.tizentube.cobalt/dev.cobalt.app.MainActivity supplied; not Samsung Tizen integration.",
@@ -27158,7 +28135,16 @@
       },
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/827#issuecomment-6160472620"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "tizentube-cobalt",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The requested reisxd project describes a sideloaded Cobalt-based app enhancing a separate streaming website with ad removal and SponsorBlock. It is a third-party viewing client, without an independently supplied film/TV catalog or provider-published app identity."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 828,
@@ -27241,13 +28227,14 @@
         "wholphin"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "wholphin",
           "family": "nvidia-shield",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The damontecres project describes Wholphin as an open-source Android TV client for Jellyfin. It is a separate developer's media-server client, rather than Jellyfin's own app or an independently supplied TV programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Duplicate of #779 with MainActivity dump. Comment 5710835344 explicitly confirms select_source(com.github.damontecres.wholphin) works using supplied custom launcher.",
@@ -27282,7 +28269,16 @@
       "commentUrls": [
         "https://github.com/PRProd/HA-Firemote/issues/831#issuecomment-5708999344",
         "https://github.com/PRProd/HA-Firemote/issues/831#issuecomment-5710835344"
-      ]
+      ],
+      "providerReview": [
+        {
+          "catalogId": "wholphin",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The damontecres project describes Wholphin as an open-source Android TV client for Jellyfin. It is a separate developer's media-server client, rather than Jellyfin's own app or an independently supplied TV programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 836,
@@ -27382,7 +28378,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "maxtv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact hr.telekom.android.maxtvp listing is published by Hrvatski Telekom and supplies TV channels, sports, films, replay and a video library with a Telekom account."
+        }
+      ]
     },
     {
       "issue": 840,
@@ -27427,7 +28431,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "magic-tv-ocilion",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Exact com.ocilion.magictv listing is published by kabelplus GmbH and describes its television channels, replay and video library. The Ocilion package namespace is a platform implementation detail, not evidence that this is a generic player. Claimed Fire activities remain unverified."
+        }
+      ]
     },
     {
       "issue": 841,
@@ -27640,13 +28652,14 @@
         "neptune"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "neptune",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "App Store id6756797773 identifies NEED4SWEDE LLC's Neptune Media Player as an Apple TV Jellyfin client connecting to the user's media server/library. This independently supports the request's client identity; Neptune does not supply a television programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Apple TV source Neptune is supplied. Jellyfin client identity differs from Jellyfin/Swiftfin/Wholphin.",
@@ -27663,7 +28676,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "neptune",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "App Store id6756797773 identifies NEED4SWEDE LLC's Neptune Media Player as an Apple TV Jellyfin client connecting to the user's media server/library. This independently supports the request's client identity; Neptune does not supply a television programming service."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 856,
@@ -27678,7 +28700,7 @@
         "smart-tube-next-beta-legacy"
       ],
       "auditStatus": "regression",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "partially-implemented-provider-policy",
       "familyStates": [
         {
           "catalogId": "smart-tube-next",
@@ -27695,14 +28717,16 @@
         {
           "catalogId": "smart-tube-next-legacy",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging.",
+          "priorStatus": "candidate-implemented"
         },
         {
           "catalogId": "smart-tube-next-beta-legacy",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. A legacy beta package is still an unofficial YouTube client; being an old alias does not make this newly added ID an official provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Reporter explicitly tested Fire Beta v32.56: org.smarttube.beta/com.liskovsoft.smartyoutubetv2.tv.ui.main.SplashActivity works via HA and native button after edit. Stable package org.smarttube.stable supplied but no successful stable launch test; retain legacy package variants.",
@@ -27726,7 +28750,22 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "smart-tube-next-legacy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging."
+        },
+        {
+          "catalogId": "smart-tube-next-beta-legacy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. A legacy beta package is still an unofficial YouTube client; being an old alias does not make this newly added ID an official provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 859,
@@ -27738,13 +28777,14 @@
         "playlet"
       ],
       "auditStatus": "needs_verified_launch_id",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "playlet",
           "family": "roku",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The project's own README calls Playlet an unofficial YouTube client for Roku. It is not YouTube's first-party app or a separate programming provider.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Unlabeled Roku request links iBicha/playlet and contains no channel ID/source. Link identifies project, not launch identifier; obtain installed Roku app ID.",
@@ -27762,7 +28802,16 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "playlet",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The project's own README calls Playlet an unofficial YouTube client for Roku. It is not YouTube's first-party app or a separate programming provider."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     },
     {
       "issue": 860,
@@ -27816,7 +28865,15 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "frndly-tv",
+          "decision": "keep",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "Frndly's own site lists its live/on-demand channel service and supported television devices; Roku's official announcement also identifies and links the Frndly TV app in its store. This is a programming subscription service, not a generic player."
+        }
+      ]
     },
     {
       "issue": 861,
@@ -27831,25 +28888,28 @@
         "plezy"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "partially-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "plezy",
           "family": "amazon-fire",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The edde746 project describes Plezy as its own client for Plex, Jellyfin and Emby. It connects to other media services/servers and is neither their first-party provider app nor a separately verified TV programming service.",
+          "priorStatus": "candidate-implemented"
         },
         {
           "catalogId": "plezy",
           "family": "apple-tv",
-          "status": "blocked-missing-evidence",
-          "blocker": "No installed tvOS source or supported deep link supplied; Fire package cannot be used on tvOS."
+          "status": "excluded-by-provider-policy",
+          "blocker": "The edde746 project describes Plezy as its own client for Plex, Jellyfin and Emby. It connects to other media services/servers and is neither their first-party provider app nor a separately verified TV programming service.",
+          "priorStatus": "blocked-missing-evidence"
         },
         {
           "catalogId": "plezy",
           "family": "chromecast",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The edde746 project describes Plezy as its own client for Plex, Jellyfin and Emby. It connects to other media services/servers and is neither their first-party provider app nor a separately verified TV programming service.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "Fire package com.edde746.plezy/MainActivity supplied. Optional comment requests Google TV and Apple TV too, but neither has working launch evidence here; keep those platforms gated.",
@@ -27880,7 +28940,16 @@
           }
         ]
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "plezy",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The edde746 project describes Plezy as its own client for Plex, Jellyfin and Emby. It connects to other media services/servers and is neither their first-party provider app nor a separately verified TV programming service."
+        }
+      ],
+      "priorImplementationStatus": "partially-implemented"
     },
     {
       "issue": 863,
@@ -27895,13 +28964,14 @@
         "iptv-plus"
       ],
       "auditStatus": "missing_preset",
-      "implementationStatus": "candidate-implemented",
+      "implementationStatus": "excluded-by-provider-policy",
       "familyStates": [
         {
           "catalogId": "iptv-plus",
           "family": "apple-tv",
-          "status": "candidate-implemented",
-          "blocker": null
+          "status": "excluded-by-provider-policy",
+          "blocker": "The developer-linked site explicitly says IPTV+ is only a player and supplies no channels, subscriptions or playlists; App Store id1525121231 identifies Mohamed Ali BEN YAAGOUB and user-provided M3U/Xtream playback.",
+          "priorStatus": "candidate-implemented"
         }
       ],
       "auditFinding": "IPTV+ product App Store id1525121231 reports exact Apple TV source lowercase iptv. Do not use product label IPTV+ as launch source or conflate other generic IPTV players.",
@@ -27920,7 +28990,17 @@
         "bodyComponents": [],
         "evidence": []
       },
-      "commentUrls": []
+      "commentUrls": [],
+      "providerReview": [
+        {
+          "catalogId": "iptv-plus",
+          "decision": "exclude",
+          "reference": "PROVIDER_REVIEW.json",
+          "reason": "The developer-linked site explicitly says IPTV+ is only a player and supplies no channels, subscriptions or playlists; App Store id1525121231 identifies Mohamed Ali BEN YAAGOUB and user-provided M3U/Xtream playback."
+        }
+      ],
+      "priorImplementationStatus": "candidate-implemented"
     }
-  ]
+  ],
+  "providerReview": "PROVIDER_REVIEW.json"
 }

@@ -99,7 +99,7 @@ export class FiremoteCardEditor extends LitElement {
     return html`${[...slots].sort((a,b) => a-b).map(slot => {
       const name = `app_launch_${slot}`;
       const selected = this._config[name] || '';
-      const choices = options.filter(([id,entry]) => entry.lifecycle !== 'legacy' || id === selected).map(([id,entry]) => ({value:id,label:`${entry.friendlyName}${entry.lifecycle === 'legacy' ? ' (legacy)' : ''}`}));
+      const choices = options.filter(([id,entry]) => entry.lifecycle !== 'legacy' || id === selected).map(([id,entry]) => ({value:id,label:`${entry.friendlyName}${entry.legacyReason ? ` (${entry.legacyReason}; existing configuration)` : entry.lifecycle === 'legacy' ? ' (legacy)' : ''}`}));
       if (selected && selected !== 'hidden' && !choices.some(choice => choice.value === selected)) choices.unshift({value:selected,label:`${selected} (configured)`});
       return this.select(name,`${translate(this.hass,'App Launch Button')} ${slot}`,selected,[{value:'',label:'Default (empty)'},{value:'hidden',label:'hidden'},...choices],false);
     })}${count ? html`<button type="button" @click=${() => { this._extraSlots = [...(this._extraSlots || []), Math.max(...slots,0) + 1]; }}>${translate(this.hass,'Add launcher')}</button>` : ''}`;

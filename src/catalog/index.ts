@@ -1,15 +1,19 @@
 import { catalogPatches } from './supplemental';
 import { issueProvenance } from './provenance';
+import { legacyCatalogIds } from './legacy-ids';
+import { providerApprovals, legacyUtilities } from './provider-policy';
 import type { CatalogEntry, CatalogFamily, CatalogManifest, CatalogPatch, CatalogProblem, DeviceFamily, LauncherEntry, LaunchStrategy, PlatformLaunch, SourceEvidence } from './types';
 
 export type * from './types';
 export { catalogPatches } from './supplemental';
+export { providerApprovals, legacyUtilities } from './provider-policy';
 
 const REVIEWED_ON = '2026-10-22';
 const BASELINE_SOURCE = 'https://github.com/Narehood/HomeAssistant-TV-Remote/blob/b856a45e684775fd477dbcd8d1342ff65bb97e38/dist/launcher-buttons.js';
 const ANDROID_PACKAGE = /^[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+$/;
 const FAMILIES = new Set<DeviceFamily>(['amazon-fire', 'apple-tv', 'chromecast', 'homatics', 'nvidia-shield', 'onn', 'roku', 'xiaomi', 'none']);
 const STRATEGIES = new Set<LaunchStrategy>(['package', 'source', 'command', 'remote-command', 'deep-link']);
+const BASELINE_IDS = new Set<string>(legacyCatalogIds);
 
 export function escapeCatalogLabel(label: string): string {
   return label.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[char]!));
@@ -69,6 +73,9 @@ export function augmentLauncherData(baseline: Record<string, LauncherEntry>, pat
     // recorded explicitly in the manifest rather than given an invented route.
     data[patch.id] = entry;
   }
+  for (const [id, utility] of Object.entries(legacyUtilities)) {
+    if (data[id]) { data[id].lifecycle = 'legacy'; data[id].legacyReason = utility.reason; }
+  }
   return data;
 }
 
@@ -116,10 +123,13 @@ export function createCatalogManifest(data: Record<string, LauncherEntry>, patch
     const patch = patchMap.get(id);
     const issues = [...new Set([...(issueProvenance[id] ?? []), ...(patch?.issues ?? [])])].sort((a, b) => a - b);
     const baselineEvidence: SourceEvidence[] = entry.catalogOrigin === 'supplemental' ? [] : [{kind: 'baseline-catalog', url: BASELINE_SOURCE}];
+    const approval = providerApprovals[id];
     const provenance: SourceEvidence[] = [
       ...baselineEvidence,
       ...issues.map(issue => ({kind: 'request', url: `https://github.com/PRProd/HA-Firemote/issues/${issue}`})),
       ...(patch?.sources ?? []).map(url => ({kind: 'reviewed-source', url})),
+      ...(approval?.sources ?? []).map(url => ({kind:'provider-identity',url})),
+      ...(legacyUtilities[id] ? [{kind:'utility-identity',url:legacyUtilities[id].source}] : []),
     ];
     const families: CatalogEntry['families'] = {};
     const requested = new Set([...entry.deviceFamily, ...Object.keys(patch?.incompleteFamilies ?? {}) as DeviceFamily[]]);
@@ -141,17 +151,22 @@ export function createCatalogManifest(data: Record<string, LauncherEntry>, patch
       artwork: {kind: entry.className === 'catalogTextButton' ? 'typographic' : 'existing-svg', reference: id},
       supportedFamilies: [...entry.deviceFamily], families, region: patch?.region ?? null,
       lifecycle: entry.lifecycle ?? 'active', reviewedOn: REVIEWED_ON, hardwareVerifiedOn: null,
-      sourceProvenance: provenance, requestIssues: issues, notes: patch?.notes ?? [], observedEvidence: patch?.observedEvidence ?? [],
+      sourceProvenance: provenance, requestIssues: issues,
+      notes: [...(patch?.notes ?? []), ...(legacyUtilities[id] ? [`${legacyUtilities[id].reason}: retained for existing YAML only; excluded from TV-provider recommendations.`] : [])],
+      observedEvidence: patch?.observedEvidence ?? [],
     };
   });
   return {schemaVersion: 1, reviewedOn: REVIEWED_ON, entries};
 }
 
 /** Return all defects so CI can report the complete problem set in one run. */
-export function validateCatalogManifest(manifest: CatalogManifest, data: Record<string, LauncherEntry>): CatalogProblem[] {
+export function validateCatalogManifest(manifest: CatalogManifest, data: Record<string, LauncherEntry>, provenance: Record<string, number[]> = issueProvenance): CatalogProblem[] {
   const problems: CatalogProblem[] = [];
   const ids = new Set<string>();
   const identities = new Map<string, string>();
+  for (const id of Object.keys(provenance)) {
+    if (!Object.prototype.hasOwnProperty.call(data, id)) problems.push({id, message: 'Issue provenance has no launcher data.'});
+  }
   for (const entry of manifest.entries) {
     const add = (message: string, family?: string) => problems.push({id: entry.id, ...(family ? {family} : {}), message});
     if (ids.has(entry.id)) add('Duplicate catalog ID.');
@@ -163,6 +178,11 @@ export function validateCatalogManifest(manifest: CatalogManifest, data: Record<
     }
     const launcher = data[entry.id];
     if (!launcher) { add('Missing launcher data.'); continue; }
+    if (!BASELINE_IDS.has(entry.id)) {
+      const approval = providerApprovals[entry.id];
+      if (!approval?.provider || !approval.category || !approval.sources.length || approval.sources.some(url => !/^https:\/\//.test(url))) add('New launcher lacks a primary-source TV-provider approval.');
+    }
+    if (legacyUtilities[entry.id] && (entry.lifecycle !== 'legacy' || launcher.lifecycle !== 'legacy')) add('Inherited utility must remain legacy-only.');
     if (!entry.displayName || !launcher.friendlyName) add('Missing display name.');
     if (!launcher.button?.trim()) add('Missing artwork.');
     if (entry.artwork.reference !== entry.id) add('Artwork reference does not resolve to this launcher.');

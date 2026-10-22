@@ -2,8 +2,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { catalogManifest, launcherCSS, launcherData } from '../src/launcher-buttons.js';
-import { augmentLauncherData, createCatalogManifest, isCompleteLaunch, recommendedCatalogEntries, resolveCatalogId, resolveCatalogSource, resolvePlatformLaunch, typographicArtwork, validateCatalogManifest } from '../src/catalog';
+import { augmentLauncherData, createCatalogManifest, isCompleteLaunch, recommendedCatalogEntries, resolveCatalogId, resolveCatalogSource, resolvePlatformLaunch, typographicArtwork, validateCatalogManifest, providerApprovals, legacyUtilities } from '../src/catalog';
 import { legacyCatalogIds } from '../src/catalog/legacy-ids';
+import { issueProvenance } from '../src/catalog/provenance';
 import type { CatalogManifest, CatalogPatch, DeviceFamily, LauncherEntry } from '../src/catalog';
 
 const entry = (id: string) => catalogManifest.entries.find(app => app.id === id)!;
@@ -13,11 +14,25 @@ const fixture = (overrides: Partial<LauncherEntry> = {}): LauncherEntry => ({
 });
 
 describe('catalog integrity and compatibility', () => {
+  it('retains the four reviewed provider IDs and their issue provenance', () => {
+    for (const id of ['sky-news', 'prime-video', 'sky-plus-br', 'sky-go']) {
+      expect(launcherData[id], id).toBeDefined();
+      expect(entry(id).requestIssues, id).toEqual(expect.arrayContaining(issueProvenance[id]!));
+    }
+  });
+
+  it('rejects provenance that no longer has any launcher record', () => {
+    const data = { test: fixture() };
+    const manifest = createCatalogManifest(data, []);
+    expect(validateCatalogManifest(manifest, data, { test: [1], orphan: [2] }))
+      .toContainEqual({id:'orphan',message:'Issue provenance has no launcher data.'});
+  });
+
   it('preserves every baseline YAML ID and gives all choices artwork and a validated manifest', () => {
     expect(legacyCatalogIds).toHaveLength(385);
     for (const id of legacyCatalogIds) expect(launcherData[id], id).toBeDefined();
     expect(validateCatalogManifest(catalogManifest, launcherData)).toEqual([]);
-    expect(catalogManifest.entries.length).toBeGreaterThan(450);
+    expect(catalogManifest.entries).toHaveLength(385 + Object.keys(providerApprovals).length);
     expect(launcherCSS).toContain('.catalog-label');
   });
 
@@ -87,12 +102,10 @@ describe('catalog integrity and compatibility', () => {
 });
 
 describe('reviewed app repairs and distinct variants', () => {
-  it('updates SmartTube stable/beta packages and retains explicit old-package choices', () => {
+  it('updates the inherited SmartTube stable/beta IDs without adding unofficial-client variants', () => {
     expect(launch('smart-tube-next', 'nvidia-shield')).toMatchObject({androidName: 'org.smarttube.stable', launchStrategy: 'package'});
     expect(launch('smart-tube-next-beta', 'amazon-fire')).toMatchObject({androidName: 'org.smarttube.beta', launchStrategy: 'package'});
     expect(launch('smart-tube-next-beta', 'amazon-fire').adbLaunchCommand).toBeUndefined();
-    expect(launch('smart-tube-next-legacy', 'chromecast').androidName).toBe('com.teamsmart.videomanager.tv');
-    expect(launch('smart-tube-next-beta-legacy', 'chromecast').androidName).toBe('com.liskovsoft.smarttubetv.beta');
   });
 
   it('keeps platform-specific rename sources and Roku IDs without deleting old YAML IDs', () => {
@@ -119,39 +132,27 @@ describe('reviewed app repairs and distinct variants', () => {
     expect(launch('discovery-plus', 'chromecast').deepLink).toBeUndefined();
   });
 
-  it('keeps regional, generation, client and paid variants separate', () => {
+  it('keeps provider region, generation and TV builds separate', () => {
     expect(launch('free-tv-fr', 'apple-tv').appName).toBe('Free TV');
     expect(launch('free-tv', 'chromecast').androidName).toBe('tv.freetv.androidtv');
     expect(launch('magenta-tv-gen1', 'nvidia-shield').androidName).toBe('de.telekom.magentatv.atv');
     expect(launch('magenta-tv', 'nvidia-shield').androidName).toBe('de.telekom.magentatv.androidtv');
-    expect(launch('emby-android', 'chromecast').androidName).toBe('com.mb.android');
-    expect(launch('ip-cam-viewer-paid', 'amazon-fire').androidName).toBe('com.rcreations.WebCamViewerPaid');
-    expect(launch('immich-tv', 'amazon-fire').androidName).toBe('nl.giejay.android.tv.immich');
     expect(launch('vk-video-tv', 'xiaomi').androidName).toBe('com.vk.tv');
     expect(launch('rutube-tv', 'xiaomi').androidName).toBe('ru.rutube.app');
-    expect(launch('iptv-android', 'chromecast').androidName).toBe('ru.iptvremote.android.iptv');
-    expect(launch('iptv-plus', 'apple-tv').appName).toBe('iptv');
     expect(launch('o2tv', 'apple-tv').appName).toBe('O₂ TV');
     expect(entry('soop').requestIssues).toContain(798);
     expect(launch('soop', 'nvidia-shield').androidName).toBe('kr.co.afreecatv.atv');
   });
 
   it('deduplicates issue families and resolves new primary-source identifiers', () => {
-    expect(entry('wholphin').requestIssues).toEqual(expect.arrayContaining([779, 831]));
     expect(entry('frndly-tv').requestIssues).toEqual(expect.arrayContaining([655, 860]));
     expect(entry('tivify').requestIssues).toEqual(expect.arrayContaining([626, 627]));
-    expect(launch('playlet', 'roku')['app-id']).toBe(693751);
-    expect(entry('playlet').sourceProvenance.some(source => source.url.includes('iBicha/playlet'))).toBe(true);
-    expect(launch('nuvio', 'nvidia-shield').androidName).toBe('com.nuvio.tv');
-    expect(launch('nuvio-playstore', 'nvidia-shield').androidName).toBe('com.nuvio.app');
     expect(launch('waipuTV', 'roku')).toMatchObject({appName: 'waipu.tv', 'app-id': 677369});
     expect(launch('now-tv', 'nvidia-shield')).toMatchObject({androidName: 'com.bskyb.nowtv.beta', verification: 'requires-device-validation'});
-    expect(launch('plezy', 'chromecast')).toMatchObject({androidName: 'com.edde746.plezy', launchStrategy: 'package'});
-    expect(launch('ninja-ninjabox', 'amazon-fire')).toMatchObject({androidName: 'com.ninja.ninjabox', launchStrategy: 'package'});
   });
 
   it('never launches a foreground playback activity or the fabricated Magic TV component', () => {
-    for (const [id, family] of [['magic-tv-ocilion', 'amazon-fire'], ['fizztv', 'amazon-fire'], ['vodafone-tv-pt', 'xiaomi'], ['soop', 'nvidia-shield'], ['smarters4su', 'homatics'], ['tcm', 'amazon-fire'], ['iptvsmarterstvlogik', 'amazon-fire']] as const) {
+    for (const [id, family] of [['magic-tv-ocilion', 'amazon-fire'], ['fizztv', 'amazon-fire'], ['vodafone-tv-pt', 'xiaomi'], ['soop', 'nvidia-shield'], ['tcm', 'amazon-fire']] as const) {
       const candidate = launch(id, family);
       expect(candidate.launchStrategy).toBe('package');
       expect(candidate.adbLaunchCommand).toBeUndefined();
@@ -174,16 +175,45 @@ describe('reviewed app repairs and distinct variants', () => {
   });
 
   it('keeps unsupported identifier/platform requests as explicit incomplete records', () => {
-    for (const id of ['tvlauncher', 'opus-iptv', 'legionanimefull', 'ninja', 'mytvonline2', 'mytvonline3', 'pooya-tv', 'directv-set-top']) {
-      const app = entry(id);
-      expect(app).toBeDefined();
-      expect(Object.values(app.families).every(family => family!.status === 'incomplete' && !!family!.blocker)).toBe(true);
-      expect(launcherData[id]!.deviceFamily).toEqual([]);
-    }
     expect(entry('zitotv2go').families['amazon-fire']!.status).toBe('incomplete');
     expect(entry('zitotv2go').families.roku!.status).toBe('complete');
     expect(entry('implayer-tv').families.roku!.status).toBe('incomplete');
     expect(entry('implayer-tv').families.chromecast!.status).toBe('complete');
+  });
+});
+
+describe('TV-provider review gate', () => {
+  const review = JSON.parse(readFileSync(resolve('docs/PROVIDER_REVIEW.json'), 'utf8')) as {
+    entries: {id: string; decision: 'keep' | 'exclude'; reason: string; sources: string[]}[];
+  };
+  it('accounts for every proposed addition and excludes each rejected identity from the installed catalog', () => {
+    expect(review.entries).toHaveLength(102);
+    expect(new Set(review.entries.map(row => row.id)).size).toBe(102);
+    expect(review.entries.filter(row => row.decision === 'keep')).toHaveLength(51);
+    const additions = catalogManifest.entries.filter(app => !(legacyCatalogIds as readonly string[]).includes(app.id)).map(app => app.id).sort();
+    expect(additions).toEqual(review.entries.filter(row => row.decision === 'keep').map(row => row.id).sort());
+    expect(additions).toEqual(Object.keys(providerApprovals).sort());
+    for (const row of review.entries) {
+      expect(row.reason).toBeTruthy();
+      expect(row.sources.length).toBeGreaterThan(0);
+      if (row.decision === 'exclude') expect(launcherData[row.id], row.id).toBeUndefined();
+      else expect(entry(row.id).sourceProvenance.some(source => source.kind === 'provider-identity'), row.id).toBe(true);
+    }
+  });
+  it('rejects an unknown addition even when it claims baseline origin', () => {
+    const data = { unreviewed: fixture({catalogOrigin:'baseline',appName:'Example'}) };
+    const manifest = createCatalogManifest(data, []);
+    expect(validateCatalogManifest(manifest, data, {})).toContainEqual({id:'unreviewed',message:'New launcher lacks a primary-source TV-provider approval.'});
+  });
+  it('preserves inherited VPN launch metadata while omitting every VPN from provider recommendations', () => {
+    for (const id of Object.keys(legacyUtilities)) {
+      expect(launcherData[id]!.legacyReason).toBe('VPN utility');
+      expect(entry(id).lifecycle).toBe('legacy');
+      for (const family of entry(id).supportedFamilies) {
+        expect(isCompleteLaunch(launch(id, family), family), id).toBe(true);
+        expect(recommendedCatalogEntries(catalogManifest, family).some(app => app.id === id), id).toBe(false);
+      }
+    }
   });
 });
 

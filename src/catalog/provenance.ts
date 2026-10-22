@@ -375,9 +375,6 @@ export const issueProvenance: Record<string, number[]> = {
     782,
     828
   ],
-  "directv-set-top": [
-    170
-  ],
   "tving": [
     171
   ],
@@ -659,9 +656,6 @@ export const issueProvenance: Record<string, number[]> = {
   "radio-paradise": [
     301
   ],
-  "stbemupro": [
-    302
-  ],
   "freeview-play": [
     304
   ],
@@ -677,12 +671,6 @@ export const issueProvenance: Record<string, number[]> = {
   ],
   "dog-tv": [
     317
-  ],
-  "mytvonline3": [
-    318
-  ],
-  "mytvonline2": [
-    319
   ],
   "spacedesk-display": [
     320
@@ -721,10 +709,6 @@ export const issueProvenance: Record<string, number[]> = {
   ],
   "elisa-elamus": [
     347
-  ],
-  "function-screen-mirroring": [
-    348,
-    686
   ],
   "sportsnet": [
     352,
@@ -826,12 +810,6 @@ export const issueProvenance: Record<string, number[]> = {
   ],
   "canal-plus": [
     408
-  ],
-  "ninja": [
-    409
-  ],
-  "ninja-ninjabox": [
-    409
   ],
   "radioplayer-uk": [
     412
@@ -1100,9 +1078,6 @@ export const issueProvenance: Record<string, number[]> = {
   "caiway-tv": [
     601
   ],
-  "tvlauncher": [
-    607
-  ],
   "skych": [
     608
   ],
@@ -1151,21 +1126,11 @@ export const issueProvenance: Record<string, number[]> = {
   "spectrumnews": [
     633
   ],
-  "pooya-tv": [
-    634
-  ],
   "wsbtv2": [
     636
   ],
-  "dreamplayer": [
-    646
-  ],
   "virgintvgo": [
     648
-  ],
-  "ip-cam-viewer-paid": [
-    653,
-    694
   ],
   "frndly-tv": [
     655,
@@ -1174,48 +1139,17 @@ export const issueProvenance: Record<string, number[]> = {
   "youseeplay": [
     659
   ],
-  "nozomi": [
-    661
-  ],
-  "ikortv": [
-    662
-  ],
-  "tunein": [
-    664
-  ],
-  "immich-tv": [
-    666
-  ],
-  "immichframe": [
-    674
-  ],
   "vidangel": [
     675
-  ],
-  "iptvstreamplayer": [
-    680
   ],
   "vodafone-tv-pt": [
     681
   ],
-  "x3mplayer": [
-    682
-  ],
   "freespeechtv": [
     683
   ],
-  "hydravion": [
-    684
-  ],
   "joyn-at": [
     689
-  ],
-  "microiptv": [
-    691,
-    804
-  ],
-  "emby-android": [
-    695
   ],
   "monumental": [
     696
@@ -1224,20 +1158,11 @@ export const issueProvenance: Record<string, number[]> = {
     697,
     718
   ],
-  "vradio": [
-    700
-  ],
-  "babycam": [
-    702
-  ],
   "talksport": [
     703
   ],
   "anigamer": [
     705
-  ],
-  "pxplayremoteplay": [
-    706
   ],
   "tod": [
     708
@@ -1251,26 +1176,14 @@ export const issueProvenance: Record<string, number[]> = {
   "beeline-tv": [
     713
   ],
-  "adguardvpn": [
-    714
-  ],
   "vk-video-tv": [
     715
   ],
   "rutube-tv": [
     716
   ],
-  "iptv-android": [
-    719
-  ],
-  "opus-iptv": [
-    721
-  ],
   "history-vault": [
     725
-  ],
-  "streamshow": [
-    726
   ],
   "willow": [
     727
@@ -1284,17 +1197,6 @@ export const issueProvenance: Record<string, number[]> = {
   ],
   "tv-2go": [
     732
-  ],
-  "legionanimefull": [
-    733
-  ],
-  "omni-content-hub": [
-    734
-  ],
-  "proton-vpn": [
-    734,
-    765,
-    817
   ],
   "shudder": [
     749,
@@ -1319,33 +1221,8 @@ export const issueProvenance: Record<string, number[]> = {
     761,
     777
   ],
-  "radioreceiver": [
-    763
-  ],
-  "smart-tube-next-legacy": [
-    767,
-    812,
-    856
-  ],
-  "smart-tube-next-beta-legacy": [
-    767,
-    856
-  ],
-  "symfonium": [
-    770
-  ],
-  "iptvexpert": [
-    773
-  ],
   "tele2play": [
     775
-  ],
-  "wholphin": [
-    779,
-    831
-  ],
-  "senplayer": [
-    783
   ],
   "dreitv": [
     787
@@ -1361,42 +1238,20 @@ export const issueProvenance: Record<string, number[]> = {
   "soop": [
     798
   ],
-  "chzzk": [
-    799
-  ],
   "wavve": [
     801
   ],
   "hallmark": [
     807
   ],
-  "streamlocator": [
-    808
-  ],
-  "chillio": [
-    809
-  ],
   "tcm": [
     810
-  ],
-  "swiptv": [
-    813
   ],
   "twitch": [
     815
   ],
   "dnsnettv": [
     818
-  ],
-  "smarters4su": [
-    819
-  ],
-  "nuvio": [
-    821
-  ],
-  "tizentube-cobalt": [
-    822,
-    827
   ],
   "netflix": [
     823
@@ -1407,28 +1262,10 @@ export const issueProvenance: Record<string, number[]> = {
   "o2tv": [
     825
   ],
-  "iptvsmarterstvlogik": [
-    826
-  ],
   "maxtv": [
     839
   ],
   "apple-tv-photos": [
     848
-  ],
-  "neptune": [
-    853
-  ],
-  "playlet": [
-    859
-  ],
-  "plezy": [
-    861
-  ],
-  "iptv-plus": [
-    863
-  ],
-  "nuvio-playstore": [
-    821
   ]
 };
