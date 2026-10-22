@@ -1,102 +1,128 @@
-name: Language Support
-description: "Request support for any currently unsupported language"
-title: "[New Language Support]: "
-labels: ["Region Issue", "enhancement"]
-assignees:
-  - PRProd
+name: Language support
+description: Add or correct interface translations and regional app names
+title: "[Language]: "
+labels: ['Region Issue', 'enhancement']
 body:
   - type: markdown
     attributes:
-      value: "Thank you for taking the time to contribute to this project!  Please use this issue form to request new language support for any currently unsupported language.  [Click here](https://github.com/PRProd/HA-Firemote/wiki/#which-languages-are-currently-supported) to view the currently supported languages.<br><br>"
+      value: |
+        This form reports to Narehood/HomeAssistant-TV-Remote, the independently maintained Firemote fork. See [setup and troubleshooting](https://github.com/Narehood/HomeAssistant-TV-Remote/blob/main/docs/INSTALLATION.md). Include observed results; do not post credentials or private addresses.
   - type: input
-    id: langcode
+    id: card-version
     attributes:
-      label: Language Code
-      description: "The official 2 letter language code.  Code lookup can be found here: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"
-      placeholder: "example: en"
+      label: Card version
+      description: "Version shown by HACS or the card. Include the selected tag/commit for development versions."
     validations:
       required: true
-  - type: markdown
+  - type: input
+    id: ha-version
     attributes:
-      value: "<br><br>For Apple TV Users: Follow the instructions [listed here](https://github.com/PRProd/HA-Firemote/wiki/Providing-Details-for-App-Launcher-Requests#for-apple-tv-devices)."
+      label: Home Assistant version
+      description: "Include the exact Core/frontend version."
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: Installation method
+      options:
+        - HACS custom repository
+        - Manual release bundle
+        - Development build
+    validations:
+      required: true
   - type: textarea
-    id: appleTVSourceList
+    id: device
     attributes:
-      label: Apple TV source_list
-      placeholder: 
-      render: text
+      label: Device and integration
+      description: "Include manufacturer, model, firmware, integration name, control_mode, and how the media player and remote entities are paired."
+    validations:
+      required: true
+  - type: input
+    id: locale
+    attributes:
+      label: Language or locale code
+      description: "Include region when it matters, for example de or pt-BR."
+    validations:
+      required: true
+  - type: textarea
+    id: source-list
+    attributes:
+      label: Localized Apple TV source_list
+      description: "For Apple TV app names, copy source_list from Developer tools > States. Keep device source names separate from translated interface labels."
     validations:
       required: false
-  - type: markdown
-    attributes:
-      value: <br>
   - type: textarea
-    id: wordPhraseMap
+    id: translations
     attributes:
-      label: 'Translation Chart'
-      description: 'To the best of your ability, Please write the best translation for each of the items listed here'
+      label: Translation chart
+      description: Translate the relevant interface labels and explain regional differences.
       render: text
       value: |
-        01. App Launch Button => 
+        01. App Launch Button =>
         02. App Launcher Relative Scale =>
-        03. Apple Computers => 
-        04. Apple Music => 
-        05. Apple Photos => 
-        06. Associated => 
-        07. black => 
-        08. bottom => 
-        09. Compatibility Mode => 
-        10. Computers => 
+        03. Apple Computers =>
+        04. Apple Music =>
+        05. Apple Photos =>
+        06. Associated =>
+        07. black =>
+        08. bottom =>
+        09. Compatibility Mode =>
+        10. Computers =>
         11. Custom Remote Skin =>
-        12. Default for => 
-        13. Device Family => 
-        14. Device Model => 
-        15. Device Name Text Color => 
+        12. Default for =>
+        13. Device Family =>
+        14. Device Model =>
+        15. Device Name Text Color =>
         16. DPad Style =>
-        17. Entity => 
-        18. Function: Captions => 
-        19. Function: Channel + => 
-        20. Function: Channel - => 
-        21. Function: Control Center => 
-        22. Function: Find My Remote => 
-        23. Function: Mute => 
-        24. Function: Next => 
-        25. Function: Pairing => 
-        26. Function: Previous => 
-        27. Function: Reboot => 
-        28. Function: Search => 
-        29. Function: Settings => 
-        30. Function: Skip Backward => 
-        31. Function: Skip Forward => 
-        32. Function: Switch Apps => 
-        33. Function: System Update => 
-        34. Function: Volume + => 
-        35. Function: Volume - => 
-        36. hidden => 
+        17. Entity =>
+        18. Function: Captions =>
+        19. Function: Channel + =>
+        20. Function: Channel - =>
+        21. Function: Control Center =>
+        22. Function: Find My Remote =>
+        23. Function: Mute =>
+        24. Function: Next =>
+        25. Function: Pairing =>
+        26. Function: Previous =>
+        27. Function: Reboot =>
+        28. Function: Search =>
+        29. Function: Settings =>
+        30. Function: Skip Backward =>
+        31. Function: Skip Forward =>
+        32. Function: Switch Apps =>
+        33. Function: System Update =>
+        34. Function: Volume + =>
+        35. Function: Volume - =>
+        36. hidden =>
         37. Hide frames around button groups =>
-        38. Music => 
-        39. Name Position => 
-        40. None / Other => 
-        41. optional => 
-        42. Photos => 
-        43. Remote Style => 
-        44. Scale => 
+        38. Music =>
+        39. Name Position =>
+        40. None / Other =>
+        41. optional =>
+        42. Photos =>
+        43. Remote Style =>
+        44. Scale =>
         45. silver =>
-        46. Strong (Slower) => 
-        47. style => 
-        48. Settings => 
-        49. Search => 
-        50. top => 
-        51. Visible Device Name => 
+        46. Strong (Slower) =>
+        47. style =>
+        48. Settings =>
+        49. Search =>
+        50. top =>
+        51. Visible Device Name =>
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: <br>
   - type: textarea
-    id: additionalInfo
+    id: steps
     attributes:
-      label: Additional Comments (optional)
-      placeholder: 
+      label: Steps and observed result
+      description: "Give numbered reproduction/test steps, expected behavior, actual behavior, and relevant action or browser errors."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: "Screenshots, relevant errors, and full historical upstream issue URLs if applicable."
     validations:
       required: false

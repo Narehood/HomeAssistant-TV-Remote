@@ -1,0 +1,1227 @@
+{
+  "reviewedOn": "2026-10-22",
+  "target": "Narehood/HomeAssistant-TV-Remote",
+  "scope": "All 102 proposed additions beyond the inherited 385 YAML IDs. Official TV, broadcaster and video-content services qualify. Generic players, personal media clients, unofficial clients, utilities, radio-only apps and unverified identities are excluded from additions. Identity review does not establish current availability, launch success or Home Assistant/HACS integration.",
+  "counts": {
+    "reviewed": 102,
+    "keep": 51,
+    "exclude": 51
+  },
+  "legacyUtilities": [
+    {
+      "id": "nordvpn",
+      "decision": "legacy-only",
+      "reason": "Inherited VPN utility; hidden for new selections, explicit YAML preserved.",
+      "sources": [
+        "https://nordvpn.com/"
+      ]
+    },
+    {
+      "id": "private-internet-access",
+      "decision": "legacy-only",
+      "reason": "Inherited VPN utility; hidden for new selections, explicit YAML preserved.",
+      "sources": [
+        "https://www.privateinternetaccess.com/"
+      ]
+    },
+    {
+      "id": "surfshark-vpn",
+      "decision": "legacy-only",
+      "reason": "Inherited VPN utility; hidden for new selections, explicit YAML preserved.",
+      "sources": [
+        "https://surfshark.com/"
+      ]
+    },
+    {
+      "id": "windscribe-vpn",
+      "decision": "legacy-only",
+      "reason": "Inherited VPN utility; hidden for new selections, explicit YAML preserved.",
+      "sources": [
+        "https://windscribe.com/"
+      ]
+    },
+    {
+      "id": "wireguard",
+      "decision": "legacy-only",
+      "reason": "Inherited VPN utility; hidden for new selections, explicit YAML preserved.",
+      "sources": [
+        "https://www.wireguard.com/"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "adguardvpn",
+      "decision": "exclude",
+      "category": "utility-vpn",
+      "providerName": null,
+      "reason": "AdGuard Software Limited's official com.adguard.vpn listing describes traffic encryption, IP masking and VPN connections; it supplies no television programming.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.adguard.vpn"
+      ],
+      "displayName": "Adguard VPN"
+    },
+    {
+      "id": "anigamer",
+      "decision": "keep",
+      "category": "video-streaming-provider",
+      "providerName": "Bahamut / aniGamer",
+      "reason": "The exact tw.com.gamer.android.animad listing is published by Bahamut and describes its authorized anime streaming catalog and simulcasts. It is the provider's own content app; device launch remains unverified.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=tw.com.gamer.android.animad"
+      ],
+      "displayName": "巴哈姆特動畫瘋 / aniGamer"
+    },
+    {
+      "id": "babycam",
+      "decision": "exclude",
+      "category": "utility-camera",
+      "providerName": null,
+      "reason": "ArjonaSoftware's exact package is a baby-monitor camera utility that connects the user's devices; Chromecast support does not make it a programming provider.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.arjonasoftware.babycam"
+      ],
+      "displayName": "BabyCam"
+    },
+    {
+      "id": "beeline-tv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "Beeline TV",
+      "reason": "Beeline's own site describes its television channels, films and series and Android TV app. Its June 2026 notice describes migration to Popcorn Beeline; retain as an official provider identity/legacy variant, without asserting current operation or validating ru.beeline.tve.android launch.",
+      "sources": [
+        "https://moskva.beeline.ru/customers/products/home/provod/tv/",
+        "https://bor.beeline.ru/customers/press/news/details/beeline-tv-pereezzhaet-v-popkorn-beeline/"
+      ],
+      "displayName": "Билайн ТВ"
+    },
+    {
+      "id": "cbs",
+      "decision": "keep",
+      "category": "official-broadcaster",
+      "providerName": "CBS / Paramount",
+      "reason": "CBS's own site supplies its network's programming and Roku activation. This establishes CBS's official Roku client; the requested numeric Roku ID and Home Assistant launch action are not device-verified.",
+      "sources": [
+        "https://www.cbs.com/",
+        "https://www.cbs.com/tv/roku/"
+      ],
+      "displayName": "CBS"
+    },
+    {
+      "id": "chillio",
+      "decision": "exclude",
+      "category": "generic-media-player",
+      "providerName": null,
+      "reason": "Chillio's own site explicitly identifies it as a media player without supplied content; users connect IPTV playlists, cloud services or add-ons.",
+      "sources": [
+        "https://chillio.app/",
+        "https://chillio.app/how-it-works"
+      ],
+      "displayName": "Chillio"
+    },
+    {
+      "id": "chzzk",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The client project's README explicitly identifies an unofficial CHZZK Android TV app; its build file matches com.escaperbgp.unofficial_chzzk_android_tv. The existence of NAVER's official CHZZK service does not validate this unrelated client or any legacy alias.",
+      "sources": [
+        "https://raw.githubusercontent.com/JiniLee/unofficial_chzzk_android_tv/main/README.md",
+        "https://raw.githubusercontent.com/JiniLee/unofficial_chzzk_android_tv/main/android/app/build.gradle"
+      ],
+      "displayName": "Chzzk (unofficial Android TV client)"
+    },
+    {
+      "id": "cnbc",
+      "decision": "keep",
+      "category": "official-broadcaster",
+      "providerName": "CNBC",
+      "reason": "The App Store entry identifies CNBC's app, publisher Versant Media LLC, Apple TV support, CNBC television livestreams and full episodes. Its finance-news features do not negate the broadcaster's video service; no YouTube bundle identity should be attached to it.",
+      "sources": [
+        "https://apps.apple.com/us/app/cnbc-stock-market-business/id398018310"
+      ],
+      "displayName": "CNBC"
+    },
+    {
+      "id": "directv-set-top",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": "DIRECTV",
+      "reason": "DIRECTV is a verified television provider, but primary material about its Gemini devices does not independently connect the specifically requested com.att.tv.openvideo/Sony set-top identity to an official supported client. Exact-client proof remains unresolved; retain the request evidence, not this new catalog entry. This is not a finding against DIRECTV itself.",
+      "sources": [
+        "https://www.directv.com/support/article/000091357",
+        "https://www.directv.com/support/article/000091414",
+        "https://github.com/PRProd/HA-Firemote/issues/170"
+      ],
+      "displayName": "DIRECTV (set-top TV app)"
+    },
+    {
+      "id": "direktesport",
+      "decision": "keep",
+      "category": "sports-streaming-provider",
+      "providerName": "Direktesport / Amedia",
+      "reason": "Exact package no.amedia.direktesport is published by Amedia Produkt og Teknologi and supplies live and recorded sports programming. Provider identity is established; launch compatibility is not.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=no.amedia.direktesport"
+      ],
+      "displayName": "Direktesport"
+    },
+    {
+      "id": "dnsnettv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "DNS:NET TV / DNS:NET Internet Service GmbH",
+      "reason": "DNS:NET's own installation manual explicitly instructs users to obtain its official DNS:NET TV app from the Amazon Fire TV App Store. Its publisher-identified Android store listing confirms the programming service. This connects the requested branded Fire TV client to the provider, while de.dnsnet.app.stb.amazon and launching still require build/device validation.",
+      "sources": [
+        "https://www.dns-net.tv/downloads/manual.pdf",
+        "https://play.google.com/store/apps/details?id=de.dnsnet.app.stb.dnsnet.internet"
+      ],
+      "displayName": "DNSNET TV"
+    },
+    {
+      "id": "dreamplayer",
+      "decision": "exclude",
+      "category": "receiver-media-client",
+      "providerName": null,
+      "reason": "The developer's official setup guide describes a client requiring the user's Enigma2 satellite/cable receiver; the exact de.cyberdream.dreamepg.tv.player store entry identifies the same receiver client. It supplies no programming service.",
+      "sources": [
+        "https://dreamplayer.tv/en/setup",
+        "https://play.google.com/store/apps/details?hl=de&id=de.cyberdream.dreamepg.tv.player"
+      ],
+      "displayName": "dream Player"
+    },
+    {
+      "id": "dreitv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "Drei TV / Hutchison Drei Austria",
+      "reason": "Exact package com.drei.tv is published by Hutchison Drei Austria GmbH and supplies live Austrian television channels plus replay; this is an official telecom television service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.drei.tv"
+      ],
+      "displayName": "DreiTV"
+    },
+    {
+      "id": "emby-android",
+      "decision": "exclude",
+      "category": "personal-media-client",
+      "providerName": null,
+      "reason": "Emby Media's own listing describes organizing and streaming the user's personal media and requires an Emby Server; live TV requires a user-supplied tuner. This official software app supplies no programming service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.mb.android"
+      ],
+      "displayName": "Emby Android (in addition to Emby Android TV)"
+    },
+    {
+      "id": "eurosportplayer",
+      "decision": "keep",
+      "category": "legacy-official-streaming-provider",
+      "providerName": "Eurosport Player / Eurosport (Discovery)",
+      "reason": "Discovery's own corporate release identifies Eurosport Player as Eurosport's live/on-demand television service and connected-TV app. Keep only as a historical official-provider identity, with availability unresolved for the legacy package. Eurosport's current help says Premium subscriptions ended on 22 July 2024; it must not be represented as a tested or currently active service.",
+      "sources": [
+        "https://ir.corporate.discovery.com/news-and-events/financial-news/financial-news-details/2014/Discovery-Communications-Completes-Acquisition-Of-Controlling-Interest-In-Eurosport-International/default.aspx",
+        "https://help.eurosport.com/gb/Answer/Detail/000004690"
+      ],
+      "displayName": "Eurosport Player (legacy)"
+    },
+    {
+      "id": "fizztv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "Fizz TV",
+      "reason": "Fizz's own support page explicitly identifies its Fizz TV app for Amazon Fire TV and explains activation against the subscriber's Fizz TV plan, connecting the specific branded Fire client to its programming service. The VMedia Inc store listing corroborates the app/operator. Exact Fire package ca.fizz_app.tv.amazon and launch behavior remain technical metadata requiring validation.",
+      "sources": [
+        "https://fizz.ca/en/faq/how-connect-device-view-my-tv-content",
+        "https://play.google.com/store/apps/details?id=ca.fizz_app.tv"
+      ],
+      "displayName": "Fizz TV"
+    },
+    {
+      "id": "free-tv-fr",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "Free TV France / Free",
+      "reason": "App Store id1542614107 is published by Free and provides French live channels, films and replay. This is the French provider's official app, distinct from the Israeli FreeTV identity; Apple TV launching is not verified.",
+      "sources": [
+        "https://apps.apple.com/fr/app/free-tv/id1542614107"
+      ],
+      "displayName": "Free TV (FR)"
+    },
+    {
+      "id": "freespeechtv",
+      "decision": "keep",
+      "category": "official-broadcaster",
+      "providerName": "Free Speech TV",
+      "reason": "Free Speech TV's own app page identifies its custom television-content apps and explicitly lists Roku and Apple TV, connecting both requested clients to the broadcaster. This does not verify Roku ID 9060 or device launching.",
+      "sources": [
+        "https://freespeech.org/app/"
+      ],
+      "displayName": "FreeSpeech TV"
+    },
+    {
+      "id": "frndly-tv",
+      "decision": "keep",
+      "category": "pay-tv-streaming-provider",
+      "providerName": "Frndly TV",
+      "reason": "Frndly's own site lists its live/on-demand channel service and supported television devices; Roku's official announcement also identifies and links the Frndly TV app in its store. This is a programming subscription service, not a generic player.",
+      "sources": [
+        "https://try.frndlytv.com/",
+        "https://www.roku.com/blog/frndly-tv"
+      ],
+      "displayName": "Frndly TV"
+    },
+    {
+      "id": "function-screen-mirroring",
+      "decision": "exclude",
+      "category": "device-mirroring-function",
+      "providerName": null,
+      "reason": "Amazon's official help identifies Display Mirroring as reflecting a user's Miracast device screen on Fire TV. This is a device function, not a programming provider or channel.",
+      "sources": [
+        "https://digprjsurvey.amazon.com/csad/help/node/ToUjwyfVuffzVfbR6b"
+      ],
+      "displayName": "Function: Display mirroring (physical remote needed to exit)"
+    },
+    {
+      "id": "hallmark",
+      "decision": "keep",
+      "category": "video-streaming-provider",
+      "providerName": "Hallmark+ / Hallmark Media",
+      "reason": "Exact package com.feeln.androidapp is published by Crown Media Holdings Inc; the listing identifies Hallmark Media United States LLC as operator and describes Hallmark films, original series and streaming channels.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.feeln.androidapp"
+      ],
+      "displayName": "Hallmark+"
+    },
+    {
+      "id": "hydravion",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The Hydravion project's own description says it is an unofficial Roku client for Floatplane and is not associated with Floatplane Media. Floatplane's provider identity does not make this client official.",
+      "sources": [
+        "https://github.com/bmlzootown/Hydravion"
+      ],
+      "displayName": "Hydravion"
+    },
+    {
+      "id": "ikortv",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": null,
+      "reason": "The request identifies com.iptv2.ikortv and an inaccessible 01203333.com download link. Reseller/distributor material advertises Korean channels, but no independently verifiable primary publisher/operator source connects this specific client to an identified television provider. Do not infer an operator or wrongdoing.",
+      "sources": [
+        "https://github.com/PRProd/HA-Firemote/issues/662",
+        "http://01203333.com/777",
+        "https://streamingtvasia.com/streaming-korean-tv/",
+        "https://smartcloudsvc.com/"
+      ],
+      "displayName": "iKorTV"
+    },
+    {
+      "id": "immich-tv",
+      "decision": "exclude",
+      "category": "utility-photo-client",
+      "providerName": null,
+      "reason": "The actual nl.giejay.android.tv.immich project is an Android TV client for self-hosted photos and videos, not a television programming service. The input's app.alextran.immich store link refers to a different app and does not verify this package.",
+      "sources": [
+        "https://github.com/giejay/Immich-Android-TV"
+      ],
+      "displayName": "Immich (Android TV client)"
+    },
+    {
+      "id": "immichframe",
+      "decision": "exclude",
+      "category": "utility-photo-frame",
+      "providerName": null,
+      "reason": "Rob Rogers's App Store entry identifies a digital photo frame requiring an ImmichFrame server and explicitly disclaims affiliation with Immich; it supplies no television programming.",
+      "sources": [
+        "https://apps.apple.com/us/app/immichframe/id6742748077"
+      ],
+      "displayName": "ImmichFrame"
+    },
+    {
+      "id": "ip-cam-viewer-paid",
+      "decision": "exclude",
+      "category": "utility-camera",
+      "providerName": null,
+      "reason": "Robert Chou's exact com.rcreations.WebCamViewerPaid listing is IP Cam Viewer Pro, a utility for remotely accessing cameras, DVRs, network recorders and webcams. It supplies no television programming.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.rcreations.WebCamViewerPaid"
+      ],
+      "displayName": "IP Cam Viewer (Paid)"
+    },
+    {
+      "id": "iptv-android",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "Alexander Sofronov's exact ru.iptvremote.android.iptv listing supports user-supplied playlists and explicitly says it contains no built-in channels.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=ru.iptvremote.android.iptv"
+      ],
+      "displayName": "IPTV (Android)"
+    },
+    {
+      "id": "iptv-plus",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "The developer-linked site explicitly says IPTV+ is only a player and supplies no channels, subscriptions or playlists; App Store id1525121231 identifies Mohamed Ali BEN YAAGOUB and user-provided M3U/Xtream playback.",
+      "sources": [
+        "https://www.iptvplus.app/",
+        "https://apps.apple.com/us/app/iptv-smart-player-live-tv/id1525121231"
+      ],
+      "displayName": "IPTV+"
+    },
+    {
+      "id": "iptvexpert",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "The LIFTOFF App Store listing describes an IPTV player that imports users' M3U/Xtream/Stalker sources; it is playback software rather than a programming provider.",
+      "sources": [
+        "https://apps.apple.com/us/app/iptv-smarters-player-expert/id1641944027"
+      ],
+      "displayName": "IPTV Expert"
+    },
+    {
+      "id": "iptvsmarterstvlogik",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": null,
+      "reason": "No primary publisher/operator source establishes com.nst.iptvsmarterstvlogik as an official television service client. The request's Downloader code 6468112 currently resolves to a general IPTV Smarters APK, which does not independently identify this named build or a programming provider. Do not substitute another Smarters app's identity.",
+      "sources": [
+        "https://github.com/PRProd/HA-Firemote/issues/826",
+        "https://go.aftvnews.com/6468112",
+        "https://www.iptvsmarters.com/iptv-smarters-5.0.apk"
+      ],
+      "displayName": "IPTV Smarters TV Logik"
+    },
+    {
+      "id": "iptvstreamplayer",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "The exact com.digitalseva.iptvplayer developer listing identifies Digital.Seva and explicitly says the app contains no media content and users must add their own. It is playback software, not a programming service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?hl=en_CA&id=com.digitalseva.iptvplayer",
+        "https://play.google.com/store/apps/details?hl=es_419&id=com.digitalseva.iptvplayer"
+      ],
+      "displayName": "IPTV Stream Player"
+    },
+    {
+      "id": "joyn-at",
+      "decision": "keep",
+      "category": "official-broadcaster-streaming",
+      "providerName": "Joyn Austria / ProSiebenSat.1 PULS 4",
+      "reason": "Exact package com.zappntv is now listed as Joyn Austria by ProSiebenSat.1 PULS 4 GmbH and supplies live channels and on-demand shows. It is the official Austrian provider variant.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.zappntv"
+      ],
+      "displayName": "Joyn (AT / former Zappn)"
+    },
+    {
+      "id": "kayo-fire-legacy",
+      "decision": "keep",
+      "category": "sports-streaming-provider",
+      "providerName": "Kayo Sports / Hubbl Pty Ltd",
+      "reason": "Exact requested package au.com.kayosports.tv has an official Google Play listing published by Hubbl Pty Ltd, describing Kayo's live/on-demand sports service and linking kayosports.com.au. This verifies the specific client identity; use on Fire devices and the catalog's legacy label are separate unverified compatibility/lifecycle questions.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=au.com.kayosports.tv"
+      ],
+      "displayName": "Kayo (legacy Fire package)"
+    },
+    {
+      "id": "kick",
+      "decision": "keep",
+      "category": "live-video-streaming-provider",
+      "providerName": "KICK",
+      "reason": "Exact com.kick.mobile listing is published by KICK - Live Streaming and describes KICK's hosted live creator-video service, with links to kick.com. It is a content service, even though some programming concerns gaming; launch support remains unverified.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.kick.mobile"
+      ],
+      "displayName": "Kick"
+    },
+    {
+      "id": "legionanimefull",
+      "decision": "exclude",
+      "category": "third-party-content-aggregator",
+      "providerName": null,
+      "reason": "The requested site's own footer identifies Aplicaciones Paleta and states that Legion Anime stores/hosts no content and uses third-party links/access; its site links a separate FULL APK. This establishes a community/third-party aggregator, not a verified first-party television programming provider. No illegality is asserted.",
+      "sources": [
+        "https://legionanime.xyz/",
+        "https://legionanime.xyz/application/apk"
+      ],
+      "displayName": "Legion Anime Full"
+    },
+    {
+      "id": "magenta-tv-gen1",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "MagentaTV first generation / Telekom Deutschland",
+      "reason": "Exact de.telekom.magentatv.atv listing is published by Telekom Deutschland GmbH, expressly names the first-generation service and limits it to tariffs booked before 15 February 2024. This is an official generation variant; it must not be merged with the newer client or called device-tested.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=de.telekom.magentatv.atv",
+        "https://apps.apple.com/us/app/magentatv-1-generation/id1054468721"
+      ],
+      "displayName": "MagentaTV (DE, 1st generation)"
+    },
+    {
+      "id": "magic-tv-ocilion",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "kabelplus MAGIC TV / kabelplus GmbH",
+      "reason": "Exact com.ocilion.magictv listing is published by kabelplus GmbH and describes its television channels, replay and video library. The Ocilion package namespace is a platform implementation detail, not evidence that this is a generic player. Claimed Fire activities remain unverified.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.ocilion.magictv"
+      ],
+      "displayName": "Magic TV"
+    },
+    {
+      "id": "maxtv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "MAXtv / Hrvatski Telekom",
+      "reason": "Exact hr.telekom.android.maxtvp listing is published by Hrvatski Telekom and supplies TV channels, sports, films, replay and a video library with a Telekom account.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=hr.telekom.android.maxtvp"
+      ],
+      "displayName": "MaxTV"
+    },
+    {
+      "id": "microiptv",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "Toderici Octavian's official App Store listing describes playback of M3U8 and OTT playlists from the user's IPTV provider. MicroIPTV is the client, not that provider.",
+      "sources": [
+        "https://apps.apple.com/cy/app/microiptv/id6469873633"
+      ],
+      "displayName": "MicroIPTV"
+    },
+    {
+      "id": "monumental",
+      "decision": "keep",
+      "category": "sports-streaming-provider",
+      "providerName": "Monumental+ / Monumental Sports & Entertainment",
+      "reason": "App Store id1082655562 is published by Monumental Sports & Entertainment and supplies its regional sports network's live games, 24/7 feed, replays and original series on Apple TV.",
+      "sources": [
+        "https://apps.apple.com/us/app/monumental/id1082655562"
+      ],
+      "displayName": "Monumental+"
+    },
+    {
+      "id": "mtvkatsomo",
+      "decision": "keep",
+      "category": "official-broadcaster-streaming",
+      "providerName": "MTV Katsomo / MTV",
+      "reason": "Exact fi.mtvkatsomo listing is published by MTV3 and supplies MTV3, Sub and AVA broadcasts and on-demand shows. This is Finland's MTV service, not an unrelated playlist app.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=fi.mtvkatsomo"
+      ],
+      "displayName": "MTV Katsomo"
+    },
+    {
+      "id": "mytvonline2",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "Formuler's own help specifically covers MYTVOnline 2 and says Formuler provides devices, no content, and no service URLs; users obtain portals/playlists from separate providers. Being official Formuler software does not make it a TV provider.",
+      "sources": [
+        "https://support.formuler.tv/kb/article/63-how-to-set-up-portals-on-mytvonline-mac-id-xc-m3u/",
+        "https://www.formuler.tv/z-alpha"
+      ],
+      "displayName": "MYTVOnline2"
+    },
+    {
+      "id": "mytvonline3",
+      "decision": "exclude",
+      "category": "generic-iptv-player",
+      "providerName": null,
+      "reason": "Formuler's MYTVOnline3 product page describes a media-viewing client, and its official setup guide specifically covers version 3 while disclaiming provision of content/service URLs. Programming comes from the user's separate provider.",
+      "sources": [
+        "https://www.formuler.tv/mytvonline3",
+        "https://support.formuler.tv/kb/article/63-how-to-set-up-portals-on-mytvonline-mac-id-xc-m3u/"
+      ],
+      "displayName": "MYTVOnline3"
+    },
+    {
+      "id": "neptune",
+      "decision": "exclude",
+      "category": "personal-media-client",
+      "providerName": null,
+      "reason": "App Store id6756797773 identifies NEED4SWEDE LLC's Neptune Media Player as an Apple TV Jellyfin client connecting to the user's media server/library. This independently supports the request's client identity; Neptune does not supply a television programming service.",
+      "sources": [
+        "https://apps.apple.com/in/app/neptune-media-player/id6756797773",
+        "https://docs.neptuneplayer.com/getting-started/setup/plugins"
+      ],
+      "displayName": "Neptune"
+    },
+    {
+      "id": "ninja",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": null,
+      "reason": "The candidate Team Ninja site advertises live TV but does not independently establish an accountable content operator or connect a verified official programming service to the requested build. The issue also records conflicting com.jlwockee.iMPlayer versus com.ninja.ninjabox identities. An APK link and advertising alone do not resolve that identity.",
+      "sources": [
+        "https://teamninja.live/",
+        "https://teamninja.live/channels/",
+        "https://teamninja.live/ninjaplayer.apk",
+        "https://github.com/PRProd/HA-Firemote/issues/409"
+      ],
+      "displayName": "Ninja"
+    },
+    {
+      "id": "ninja-ninjabox",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": null,
+      "reason": "The observed com.ninja.ninjabox package is not independently connected by a primary publisher/operator source to a verified television provider. Team Ninja's candidate site gives generic TV advertising and the linked APK was reported under a different package; preserving an observed package as a separate entry does not supply the missing provider proof.",
+      "sources": [
+        "https://teamninja.live/",
+        "https://teamninja.live/channels/",
+        "https://teamninja.live/ninjaplayer.apk",
+        "https://github.com/PRProd/HA-Firemote/issues/409"
+      ],
+      "displayName": "Ninja (observed NinjaBox build)"
+    },
+    {
+      "id": "nozomi",
+      "decision": "exclude",
+      "category": "excluded-unverified",
+      "providerName": null,
+      "reason": "The request supplies com.nozomi and an inaccessible download short link. Distributor installation material and reseller pages describe a Japanese-TV product, but do not independently identify its underlying programming operator or official publisher connection for this package. Provider identity remains unverified, without any finding of illegality.",
+      "sources": [
+        "https://github.com/PRProd/HA-Firemote/issues/661",
+        "http://01203333.com/113",
+        "https://smartcloudsvc.com/download/Nozomi_Win_Installation_English.pdf",
+        "https://streamingtvasia.com/live-streaming-japanese-tv-nozomi/"
+      ],
+      "displayName": "Nozomi"
+    },
+    {
+      "id": "nuvio",
+      "decision": "exclude",
+      "category": "generic-media-player",
+      "providerName": null,
+      "reason": "NuvioMedia's official NuvioTV README describes an open-source media app requiring users to bring their own sources. The official project is software, not a programming provider; the sideloaded distribution does not change that.",
+      "sources": [
+        "https://github.com/NuvioMedia/NuvioTV",
+        "https://raw.githubusercontent.com/NuvioMedia/NuvioTV/dev/README.md"
+      ],
+      "displayName": "Nuvio (sideloaded)"
+    },
+    {
+      "id": "nuvio-playstore",
+      "decision": "exclude",
+      "category": "generic-media-player",
+      "providerName": null,
+      "reason": "The official NuvioTV README links Google Play package com.nuvio.app and explicitly requires users' own sources. The Play Store distribution is the same media-client function and supplies no programming service.",
+      "sources": [
+        "https://raw.githubusercontent.com/NuvioMedia/NuvioTV/dev/README.md",
+        "https://play.google.com/store/apps/details?id=com.nuvio.app"
+      ],
+      "displayName": "Nuvio (Play Store)"
+    },
+    {
+      "id": "o2tv",
+      "decision": "keep",
+      "category": "telecom-tv-provider",
+      "providerName": "o2 TV Germany / Telefonica Germany",
+      "reason": "App Store id6460936474 is published by Telefonica Germany GmbH & Co. OHG, supports Apple TV, and supplies live channels, replay and films. This verifies the German provider, without validating the exact device source string.",
+      "sources": [
+        "https://apps.apple.com/de/app/o2-tv/id6460936474?platform=tv"
+      ],
+      "displayName": "o2 TV"
+    },
+    {
+      "id": "omni-content-hub",
+      "decision": "exclude",
+      "category": "generic-media-aggregator",
+      "providerName": null,
+      "reason": "The actual Omni Content Hub developer site links App Store id6741470807 and describes using users' media with catalogs/streams from Stremio add-ons and built-in/external players. It is a media/add-on hub rather than a television programming provider; it must not be confused with Omni TV or Omni Fiber.",
+      "sources": [
+        "https://omni.stkc.win/",
+        "https://apps.apple.com/us/app/omni-content-hub/id6741470807"
+      ],
+      "displayName": "Omni - Content Hub"
+    },
+    {
+      "id": "opus-iptv",
+      "decision": "exclude",
+      "category": "generic-media-client",
+      "providerName": null,
+      "reason": "BIEL LLC's App Store description says Opus plays the user's M3U/Xtream playlists and neither supplies nor hosts channels or streams. It is a playlist player, not a TV programming provider.",
+      "sources": [
+        "https://apps.apple.com/de/app/iptv-player-opus/id1592313576"
+      ],
+      "displayName": "OPUS IPTV"
+    },
+    {
+      "id": "oqee-freebox-pop",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "OQEE by Free / Free TV",
+      "reason": "Free documents its own OQEE application specifically on the Freebox Player Pop, with live television and replay. This is the provider's TV interface, rather than a general launcher utility. The reported oqee.launcher package and its Xiaomi use still need launch validation.",
+      "sources": [
+        "https://portail.free.fr/mag-free/nouveautes/mise-a-jour-de-lapplication-oqee-by-free-disponible-sur-le-player-pop/",
+        "https://portail.free.fr/mag-free/nouveautes/beneficiez-de-lappli-tv-oqee-by-free-incluse-dans-le-forfait-free-5g/",
+        "https://portail.free.fr/mag-free/bons-plans/free-tv-television-gratuite/"
+      ],
+      "displayName": "OQEE (Freebox Pop variant)"
+    },
+    {
+      "id": "playlet",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The project's own README calls Playlet an unofficial YouTube client for Roku. It is not YouTube's first-party app or a separate programming provider.",
+      "sources": [
+        "https://github.com/iBicha/playlet"
+      ],
+      "displayName": "Playlet"
+    },
+    {
+      "id": "plexpreview",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "Plex",
+      "reason": "Plex's official staff release thread distributes its Roku Preview channel, including on-demand and Live TV functionality. Plex itself supplies a film/TV/live-channel catalog; this official preview variant is distinct from third-party Plex clients.",
+      "sources": [
+        "https://forums.plex.tv/t/release-notes-for-new-experience-preview-roku/919361",
+        "https://www.plex.tv/watch-free/"
+      ],
+      "displayName": "Plex Preview"
+    },
+    {
+      "id": "plezy",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The edde746 project describes Plezy as its own client for Plex, Jellyfin and Emby. It connects to other media services/servers and is neither their first-party provider app nor a separately verified TV programming service.",
+      "sources": [
+        "https://github.com/edde746/plezy"
+      ],
+      "displayName": "Plezy"
+    },
+    {
+      "id": "pooya-tv",
+      "decision": "exclude",
+      "category": "exclude-unverified",
+      "providerName": null,
+      "reason": "The request author describes Pooya TV as a private family application not published in an app store. No independent provider operator or supplied programming catalog was verified. A Media3 demo VIEW action establishes a player action, not a broadcaster identity.",
+      "sources": [
+        "https://github.com/PRProd/HA-Firemote/issues/634",
+        "https://developer.android.com/media/media3/exoplayer/demo-application"
+      ],
+      "displayName": "Pooya TV / custom Media3 app"
+    },
+    {
+      "id": "proton-vpn",
+      "decision": "exclude",
+      "category": "vpn-network-utility",
+      "providerName": null,
+      "reason": "Proton's own site identifies this product as a VPN for security, privacy and access to other streaming services. TV-device availability does not make the VPN a provider of television programming.",
+      "sources": [
+        "https://protonvpn.com/",
+        "https://play.google.com/store/apps/details?id=ch.protonvpn.android"
+      ],
+      "displayName": "Proton VPN"
+    },
+    {
+      "id": "pxplayremoteplay",
+      "decision": "exclude",
+      "category": "gaming-utility",
+      "providerName": null,
+      "reason": "The psplay.grill.com listing by GF Frame Technologies (Streaming Dev) describes PXPlay as remote control and game streaming from the user's gaming device. It is a gaming Remote Play utility, not a TV content provider.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=psplay.grill.com"
+      ],
+      "displayName": "PXPlay: Remote Play"
+    },
+    {
+      "id": "radioreceiver",
+      "decision": "exclude",
+      "category": "audio-radio",
+      "providerName": null,
+      "reason": "The official appsolute GmbH listing describes Receiver as internet radio, podcasts and a radio alarm. Its Apple TV edition remains an audio/radio service outside the requested TV/video-provider scope.",
+      "sources": [
+        "https://apps.apple.com/de/app/radio-receiver/id311658127"
+      ],
+      "displayName": "Radio - Receiver"
+    },
+    {
+      "id": "rutube-tv",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "RUTUBE (RUFORM)",
+      "reason": "The exact ru.rutube.app package is published in RuStore by RUFORM and supplies video, films, series, live streams and online TV. This connects the requested package to RUTUBE; TV-device launch/layout remains separate from provider identity.",
+      "sources": [
+        "https://www.rustore.ru/catalog/app/ru.rutube.app",
+        "https://play.google.com/store/apps/details?id=rtb.mobile.android"
+      ],
+      "displayName": "Rutube (TV)"
+    },
+    {
+      "id": "ruutu",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "Ruutu (Sanoma Media Finland)",
+      "reason": "The exact com.thirdpresence.ruutu listing is published by Sanoma Media Finland and supplies Nelonen, Jim, Liv and Hero shows, plus films, original series and sports. The thirdpresence package namespace does not make this official listing an unrelated third-party client.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.thirdpresence.ruutu&hl=en"
+      ],
+      "displayName": "Ruutu"
+    },
+    {
+      "id": "senplayer",
+      "decision": "exclude",
+      "category": "generic-media-client",
+      "providerName": null,
+      "reason": "The App Store publisher describes SenPlayer as a personal media player for local storage, NAS, cloud drives and Plex/Emby/Jellyfin servers. It supplies player access to users' sources, not its own TV programming service.",
+      "sources": [
+        "https://apps.apple.com/us/app/senplayer-media-player/id6443975850"
+      ],
+      "displayName": "senPlayer"
+    },
+    {
+      "id": "servustvon",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "ServusTV On (Red Bull)",
+      "reason": "The requested App Store ID is published by Red Bull and describes the ServusTV On streaming platform with live sports, news, films, documentaries and talk shows. It is the broadcaster's own content app.",
+      "sources": [
+        "https://apps.apple.com/de/app/servustv-on/id517249438"
+      ],
+      "displayName": "ServusTV ON"
+    },
+    {
+      "id": "shudder",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "Shudder (AMC Networks)",
+      "reason": "The requested App Store listing is published by AMC Networks Inc. and supplies its curated horror film and series streaming catalog. This is a first-party subscription video service.",
+      "sources": [
+        "https://apps.apple.com/us/app/shudder-horror-thrillers/id919790315"
+      ],
+      "displayName": "Shudder"
+    },
+    {
+      "id": "skych",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "Sky Switzerland",
+      "reason": "The exact homedia.sky.sport package is published by Sky Switzerland and combines Sky Sport live events, Sky Show series/films and Sky Store rentals. It is the official Swiss provider app; reported Chromecast/architecture problems remain unverified.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=homedia.sky.sport&hl=en"
+      ],
+      "displayName": "Sky CH"
+    },
+    {
+      "id": "sledovanitv",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "SledovaniTV",
+      "reason": "The exact cz.sledovanitv.android listing under ModernTV offers the SledovaniTV internet television service with supplied channels, catch-up and recordings. This verifies the requested service app rather than treating a similarly named white-label client as interchangeable.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=cz.sledovanitv.android&hl=en"
+      ],
+      "displayName": "SledovaniTV"
+    },
+    {
+      "id": "smart-tube-next-beta-legacy",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. A legacy beta package is still an unofficial YouTube client; being an old alias does not make this newly added ID an official provider.",
+      "sources": [
+        "https://github.com/yuliskov/SmartTube"
+      ],
+      "displayName": "SmartTube Beta (legacy package)"
+    },
+    {
+      "id": "smart-tube-next-legacy",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "SmartTube's own project identifies its independent developer and distinguishes the app from official YouTube. The legacy stable package remains an unofficial client; this new ID does not acquire provider status through legacy packaging.",
+      "sources": [
+        "https://github.com/yuliskov/SmartTube"
+      ],
+      "displayName": "SmartTube (legacy package)"
+    },
+    {
+      "id": "smarters4su",
+      "decision": "exclude",
+      "category": "exclude-unverified",
+      "providerName": null,
+      "reason": "No primary provider website or publisher record was independently verified for com.foursusmarters.foursusmartersiptvbox. The request supplies only a label and foreground player component, with no store/APK link. Do not infer a provider or official Smarters affiliation from the name.",
+      "sources": [
+        "https://github.com/PRProd/HA-Firemote/issues/819"
+      ],
+      "displayName": "Smarters 4SU"
+    },
+    {
+      "id": "soop",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "SOOP",
+      "reason": "The exact kr.co.afreecatv.atv package is listed as SOOP for Android TV by SOOP Co., Ltd., supplying the operator's live streaming platform. This is a first-party SOOP/AfreecaTV app, despite the unrelated issue-title branding.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=kr.co.afreecatv.atv&hl=en"
+      ],
+      "displayName": "SOOP (formerly AfreecaTV)"
+    },
+    {
+      "id": "spectrumnews",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "Spectrum News (Charter Communications)",
+      "reason": "Charter's corporate announcement explicitly identifies its own Spectrum News app for Roku and Apple TV with live local news and original programming. It independently verifies the requested TV app and broadcaster relationship.",
+      "sources": [
+        "https://corporate.charter.com/newsroom/spectrum-networks-launches-connected-tv-local-news-app-for-roku-and-apple-tv",
+        "https://apps.apple.com/tt/app/spectrum-news-local-stories/id740948885?platform=tv"
+      ],
+      "displayName": "Spectrum News"
+    },
+    {
+      "id": "stbemupro",
+      "decision": "exclude",
+      "category": "generic-media-client",
+      "providerName": null,
+      "reason": "The exact StbEmu Pro listing by M Vasilchuk describes an IPTV-box emulator that users must configure for their own IPTV provider; its supplied demo portal is for testing. It is a client utility, not the television service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.mvas.stb.emu.pro&hl=en"
+      ],
+      "displayName": "StbEmu Pro"
+    },
+    {
+      "id": "streamlocator",
+      "decision": "exclude",
+      "category": "vpn-network-utility",
+      "providerName": null,
+      "reason": "The exact package is published by StreamLocator as a region-unblocking/VPN app. Its description explicitly says it only unblocks services and still requires subscriptions from the actual content providers.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.streamlocator.vpn&hl=en"
+      ],
+      "displayName": "StreamLocator"
+    },
+    {
+      "id": "streamshow",
+      "decision": "exclude",
+      "category": "camera-viewer",
+      "providerName": null,
+      "reason": "The exact package is published by devinterestdev as StreamShow - ONVIF RTSP viewer. It displays and records user-added camera/network streams, including multiple cameras; it is not a service supplying TV programming.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.devinterestdev.streamshow&hl=en"
+      ],
+      "displayName": "StreamShow"
+    },
+    {
+      "id": "swiptv",
+      "decision": "exclude",
+      "category": "generic-media-client",
+      "providerName": null,
+      "reason": "CreativeMind's requested App Store listing says SWIPTV plays M3U/Xtream playlists and explicitly supplies neither IPTV playlists nor content. Its IPTV-player functions do not establish a TV provider.",
+      "sources": [
+        "https://apps.apple.com/be/app/swiptv-iptv-player/id1658538188"
+      ],
+      "displayName": "Swiptv"
+    },
+    {
+      "id": "symfonium",
+      "decision": "exclude",
+      "category": "music-player",
+      "providerName": null,
+      "reason": "The exact package listing by Tolriq / Genimee describes a music player for local files, cloud storage and users' media servers. It is an audio/music utility, not a film/TV/live-video content provider.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=app.symfonik.music.player&hl=en"
+      ],
+      "displayName": "Symfonium"
+    },
+    {
+      "id": "talksport",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "talkSPORT (News Broadcasting / News UK)",
+      "reason": "News UK's own announcement documents talkSPORT's 24/7 FAST video channel and official smart-TV app on Fire TV, Apple TV and Google TV. The requested CTV app qualifies as a video broadcaster; this decision does not rely on the audio-only radio service.",
+      "sources": [
+        "https://www.news.co.uk/latest-news/talksport-expands-distribution-to-smart-tv-platforms/"
+      ],
+      "displayName": "Talksport"
+    },
+    {
+      "id": "tcm",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "Turner Classic Movies / Watch TCM",
+      "reason": "TCM's own Watch TCM site supplies films, and its official settings/help page names Amazon Fire TV as a Watch TCM app platform. This verifies the requested broadcaster app; the reported com.tcm.apps.tv controller still needs separate device-launch validation.",
+      "sources": [
+        "https://www.tcm.com/watchtcm",
+        "https://www.tcm.com/watchtcm/settings/"
+      ],
+      "displayName": "TCM"
+    },
+    {
+      "id": "tele2play",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Tele2 Play",
+      "reason": "The exact com.tivo.android.comhem listing is published by Tele2 AB as Tele2 Play and offers the operator's TV streaming service. The inherited Com Hem/TiVo package namespace does not identify an unrelated client.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.tivo.android.comhem&hl=en"
+      ],
+      "displayName": "Tele2 Play"
+    },
+    {
+      "id": "telenorstream",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Telenor Stream (Telenor Sweden)",
+      "reason": "The exact se.telenor.stream package is published by Telenor Sweden and provides TV customers their subscribed television content. The publisher explicitly identifies an Android TV edition, independently connecting this app to the telecom TV service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=se.telenor.stream&hl=en"
+      ],
+      "displayName": "Telenor Stream"
+    },
+    {
+      "id": "tivify",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Tivify (TVUP Streaming Media)",
+      "reason": "The exact com.tvup.tivify.app.tv package is published by TV Up Streaming Media S.L. and supplies a television channel lineup plus on-demand films and series. It provides programming, rather than merely accepting a user's IPTV playlist.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.tvup.tivify.app.tv&hl=en"
+      ],
+      "displayName": "Tivify"
+    },
+    {
+      "id": "tizentube-cobalt",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The requested reisxd project describes a sideloaded Cobalt-based app enhancing a separate streaming website with ad removal and SponsorBlock. It is a third-party viewing client, without an independently supplied film/TV catalog or provider-published app identity.",
+      "sources": [
+        "https://github.com/reisxd/TizenTubeCobalt"
+      ],
+      "displayName": "TizenTube Cobalt"
+    },
+    {
+      "id": "tod",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "TOD by beIN",
+      "reason": "The exact com.todtv.tod listing identifies TOD by beIN, its official publisher and beIN's Doha address. It supplies live sports, beIN channels, films and series for MENA, establishing a content service and its own app.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.todtv.tod&hl=en"
+      ],
+      "displayName": "Tod"
+    },
+    {
+      "id": "tunein",
+      "decision": "exclude",
+      "category": "audio-radio",
+      "providerName": null,
+      "reason": "The exact tunein.player package is published by TuneIn Inc. as TuneIn Radio: Music & Sports. Its product is radio/audio streaming, outside this catalog's film/TV/live-video provider policy.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=tunein.player&hl=en"
+      ],
+      "displayName": "TuneIn"
+    },
+    {
+      "id": "tvlauncher",
+      "decision": "exclude",
+      "category": "launcher-guide",
+      "providerName": null,
+      "reason": "Adam Foot's requested App Store listing describes a TV guide and streaming shortcuts that open channels in other installed apps. It requires those apps to watch; TV Launcher itself is not their broadcaster or programming provider.",
+      "sources": [
+        "https://apps.apple.com/gb/app/tv-launcher-live-uk-channels/id1622598042"
+      ],
+      "displayName": "TV Launcher"
+    },
+    {
+      "id": "unsersandmannchen",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "Unser Sandmaennchen (Rundfunk Berlin-Brandenburg)",
+      "reason": "rbb's own press release explicitly describes its Sandmann app for Amazon Fire TV carrying the broadcaster's episodes. The official RBB app listing also supplies daily episodes and a video library. This is broadcaster programming, even though the mobile edition includes games.",
+      "sources": [
+        "https://www.rbb-online.de/unternehmen/presse/presseinformationen/programm/2017/03/sandmann-gebaerdensprache.html",
+        "https://play.google.com/store/apps/details?id=de.rbb.sandmann&hl=en"
+      ],
+      "displayName": "Unser Sandmännchen"
+    },
+    {
+      "id": "victory-plus",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "Victory+ (A Parent Media Co.)",
+      "reason": "The exact tv.apmc.android.victorysports package is published by A Parent Media Co. Inc. and provides live sports broadcasts, replays and on-demand team programming. It is the provider's official streaming app.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=tv.apmc.android.victorysports&hl=en"
+      ],
+      "displayName": "Victory+"
+    },
+    {
+      "id": "vidangel",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "VidAngel Entertainment",
+      "reason": "The requested App Store listing is published by VidAngel Entertainment, LLC and includes Angel Studios programming in its subscription. VidAngel's own help page confirms it distributes some Angel content while focusing on filtering. Retain for that supplied catalog; VidAngel and Angel Studios are separate companies.",
+      "sources": [
+        "https://apps.apple.com/us/app/vidangel/id999547807",
+        "https://help.vidangel.com/hc/en-us/articles/4413442060557-VidAngel-is-different-than-Angel-Studios"
+      ],
+      "displayName": "VidAngel"
+    },
+    {
+      "id": "virgintvgo",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Virgin TV Go (Virgin Media)",
+      "reason": "The official Virgin Media App Store listing identifies Virgin TV Go for Apple TV and supplies live and on-demand television to Virgin TV subscribers. This connects the specific requested app to the pay-TV operator.",
+      "sources": [
+        "https://apps.apple.com/gb/app/virgin-tv-go/id1279877804",
+        "https://www.virginmedia.com/help/tv/how-to-use-virgin-tv-go-app"
+      ],
+      "displayName": "Virgin TV Go"
+    },
+    {
+      "id": "vk-video-tv",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "VK Video (VK LLC)",
+      "reason": "The exact com.vk.tv package is published by VK LLC as VK Video for Android TV. It supplies shows, films, series, online television and live broadcasts. This verifies the TV app directly, without substituting the linked mobile package.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.vk.tv&hl=en"
+      ],
+      "displayName": "VK Видео (TV)"
+    },
+    {
+      "id": "vodafone-tv-pt",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Vodafone TV Portugal",
+      "reason": "The exact com.vodafone.vtv.atv.pt package is an official Vodafone TV listing with vodafone.pt support and Vodafone Group publisher details. It provides Vodafone subscribers live channels, catch-up, recordings and films/series; this directly verifies the Portuguese Android TV variant.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.vodafone.vtv.atv.pt&hl=en"
+      ],
+      "displayName": "Vodafone TV (PT)"
+    },
+    {
+      "id": "vradio",
+      "decision": "exclude",
+      "category": "audio-radio",
+      "providerName": null,
+      "reason": "The exact com.ilv.vradio package is published by Voulimiotis Ioannis as VRadio - Online Radio App. Its function is internet-radio listening, outside the TV/video-provider policy.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.ilv.vradio&hl=en"
+      ],
+      "displayName": "Vradio"
+    },
+    {
+      "id": "wavve",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "Wavve (Content Wavve)",
+      "reason": "The exact kr.co.captv.pooq.tv package is published by Content Wavve and supplies Korean drama, entertainment and broadcast catch-up video. The legacy pooq package is the provider's official Wavve listing, not an inferred third-party alias.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=kr.co.captv.pooq.tv&hl=en"
+      ],
+      "displayName": "Wavve"
+    },
+    {
+      "id": "wholphin",
+      "decision": "exclude",
+      "category": "unofficial-provider-client",
+      "providerName": null,
+      "reason": "The damontecres project describes Wholphin as an open-source Android TV client for Jellyfin. It is a separate developer's media-server client, rather than Jellyfin's own app or an independently supplied TV programming service.",
+      "sources": [
+        "https://github.com/damontecres/Wholphin"
+      ],
+      "displayName": "Wholphin"
+    },
+    {
+      "id": "wsbtv2",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "WSB-TV Channel 2 (Cox Media Group)",
+      "reason": "The exact com.cmgdigital.wsbtvhandset listing is published by Cox Media Group Inc. as WSB-TV News and carries the Channel 2 newsroom's coverage/video. This is the broadcaster's official app; its handset package/device compatibility still requires launch testing.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.cmgdigital.wsbtvhandset&hl=en"
+      ],
+      "displayName": "WSBTV2"
+    },
+    {
+      "id": "x3mplayer",
+      "decision": "exclude",
+      "category": "generic-media-client",
+      "providerName": null,
+      "reason": "The exact app.xeev.xeplayer listing by Neat IT Solutions GmbH says X3M Player downloads and plays the user's XEEV playlists, which are required to use it. XEEV describes playlist-management software, not a supplied TV programming service.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=app.xeev.xeplayer&hl=en",
+        "https://www.xeev.net/en"
+      ],
+      "displayName": "X3M Player"
+    },
+    {
+      "id": "yleareena",
+      "decision": "keep",
+      "category": "first-party-broadcaster",
+      "providerName": "Yle Areena (Yleisradio)",
+      "reason": "The exact com.yle.webtv package is published by Yleisradio Oy. It supplies the public broadcaster's series, films, documentaries and live TV channels, with an Android TV edition explicitly described.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.yle.webtv&hl=en"
+      ],
+      "displayName": "Yle Areena"
+    },
+    {
+      "id": "youseeplay",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "YouSee Play (TDC Brands)",
+      "reason": "The requested App Store ID is published by TDC Brands A/S as YouSee Play for Apple TV and supplies subscribers live channels, catch-up, films and series. This independently connects the app to the Danish TV operator.",
+      "sources": [
+        "https://apps.apple.com/dk/app/yousee-play/id476306715"
+      ],
+      "displayName": "YouSee Play"
+    },
+    {
+      "id": "youtv",
+      "decision": "keep",
+      "category": "streaming-content-service",
+      "providerName": "YouTV Germany (NETlantic GmbH)",
+      "reason": "The request's linked help page belongs to the German YouTV service and documents supplied German TV recordings available for streaming. Its own operator page identifies NETlantic GmbH. This is a cloud-TV/catch-up content service, not an unidentified playlist client or another similarly named YouTV.",
+      "sources": [
+        "https://help.youtv.de/hc/de/articles/360029110951-German-TV-worldwide",
+        "https://help.youtv.de/hc/de/articles/360029117311-YouTV-NETlantic-GmbH",
+        "https://www.youtv.de/"
+      ],
+      "displayName": "YouTV"
+    },
+    {
+      "id": "zapping",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "Zapping TV",
+      "reason": "The exact com.eltelon.zapping package is published by Zapping TV, Inc. It supplies its own subscription channel lineup and live sports; the package namespace is tied directly to the operator by the official store listing.",
+      "sources": [
+        "https://play.google.com/store/apps/details?id=com.eltelon.zapping&hl=en"
+      ],
+      "displayName": "Zapping"
+    },
+    {
+      "id": "zitotv2go",
+      "decision": "keep",
+      "category": "pay-tv-provider",
+      "providerName": "ZitoTV2Go (Zito Media)",
+      "reason": "Zito Media's installation guide names its ZitoTV2Go service, and the official store listings describe supplied live TV and recordings for Zito subscribers. The Apple listing identifies Intracom as its technology publisher; this is an operator-backed app, not an anonymous generic IPTV client.",
+      "sources": [
+        "https://www.zitomedia.net/wp-content/uploads/2020/09/ZitoTV2Go-Installation-Instructions-6.pdf",
+        "https://play.google.com/store/apps/details?id=com.zitotv2go&hl=en",
+        "https://apps.apple.com/us/app/zitotv2go/id1300487121"
+      ],
+      "displayName": "ZitoTV2Go"
+    }
+  ]
+}

@@ -41,7 +41,9 @@ const rosettaStone = {
       "App Launcher Relative Scale": "Relativer Maßstab des Anwendungslaunchers",
       "Apple Computers": "Apple Computer",
       "Apple Music": "Apple Musik",
-      "Apple Photos": "Apple Bilder",
+      "Apple Photos": "Apple Fotos",
+      "Photos": "Fotos",
+      "Music": "Musik",
       "Associated": "Assoziiert",
       "bottom": "unten",
       "Compatibility Mode": "Kompatibilitätsmodus",
@@ -506,4 +508,27 @@ const rosettaStone = {
 
 };
 
-export { rosettaStone };
+// Keep the supplied Portuguese dictionaries and fill the editor/control vocabulary.
+Object.assign(rosettaStone.pt, {
+  'App Launcher':'Inicializador de aplicações', 'App Launcher Relative Scale':'Escala relativa das aplicações',
+  'Apple Computers':'Computadores Apple', 'Apple Music':'Apple Music', 'Apple Photos':'Fotografias Apple',
+  'Computers':'Computadores', 'Photos':'Fotografias', 'Music':'Música', 'Entity':'Entidade',
+  'Default for':'Predefinido para', 'optional':'opcional', 'black':'preto', 'silver':'prateado',
+  'style':'estilo', 'remote style':'estilo do comando', 'DPad Style':'Estilo dos botões de direção',
+  'Custom Remote Skin':'Cor personalizada do comando', 'Minimal':'Mínimo',
+  'Hide frames around button groups':'Ocultar molduras dos grupos de botões', 'Show Media Controls':'Mostrar controlos multimédia',
+  'Strong (Slower)':'Forte (mais lento)', 'Settings':'Definições', 'Search':'Pesquisar',
+  'Function: Skip Forward':'Função: Avançar', 'Home':'Início', 'Back':'Voltar', 'Up':'Cima', 'Down':'Baixo',
+  'Left':'Esquerda', 'Right':'Direita', 'Select':'Selecionar', 'Power':'Ligar / desligar', 'Keyboard':'Teclado',
+  'Play / Pause':'Reproduzir / pausar', 'Volume up':'Aumentar volume', 'Volume down':'Diminuir volume', 'Menu':'Menu',
+  'Control mode':'Modo de controlo', 'Associated remote entity':'Entidade do comando associado', 'Add launcher':'Adicionar aplicação', 'Launcher slots':'Número de aplicações',
+});
+const canonicalKeys = [...new Set([...Object.values(rosettaStone).flatMap(Object.keys),
+  'Home','Back','Up','Down','Left','Right','Select','Power','Keyboard','Play / Pause','Volume up','Volume down','Menu',
+  'Control mode','Associated remote entity','Add launcher','Launcher slots'])];
+rosettaStone.en = Object.fromEntries(canonicalKeys.map(key => [key, key]));
+const translationCoverage = Object.fromEntries(Object.entries(rosettaStone).map(([language, dictionary]) => [language,Object.freeze(Object.keys(dictionary))]));
+for (const language of Object.keys(rosettaStone)) rosettaStone[language] = Object.freeze({...rosettaStone.en, ...rosettaStone[language]});
+Object.freeze(rosettaStone);
+
+export { rosettaStone, translationCoverage };

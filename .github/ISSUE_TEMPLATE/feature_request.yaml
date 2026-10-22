@@ -1,37 +1,61 @@
-name: Feature Request
-description: "Suggest an idea for this project"
-title: "[Feature Request]: "
-labels: ["enhancement"]
-assignees:
-  - PRProd
+name: Feature request
+description: Suggest a feature for the fork
+title: "[Feature]: "
+labels: ['enhancement']
 body:
   - type: markdown
     attributes:
-      value: "Thank you for taking the time to contribute to this project!<br><br>If your request is to add a new device to the Firemote card, please [click here](https://github.com/PRProd/HA-Firemote/discussions/41) instead.<br><br>"
-  - type: textarea
-    id: relatedtoaproblem
+      value: |
+        This form reports to Narehood/HomeAssistant-TV-Remote, the independently maintained Firemote fork. See [setup and troubleshooting](https://github.com/Narehood/HomeAssistant-TV-Remote/blob/main/docs/INSTALLATION.md). Include observed results; do not post credentials or private addresses.
+  - type: input
+    id: card-version
     attributes:
-      label: "Is your feature request related to a problem?"
-      description: "If yes, please describe"
-    validations:
-      required: false
-  - type: markdown
-    attributes:
-      value: <br>
-  - type: textarea
-    id: featuredescription
-    attributes:
-      label: "Feature Request"
-      description: "Please do your best to describe the new feature, giving details and examples wherever you can"
+      label: Card version
+      description: "Version shown by HACS or the card. Include the selected tag/commit for development versions."
     validations:
       required: true
-  - type: markdown
+  - type: input
+    id: ha-version
     attributes:
-      value: <br>
+      label: Home Assistant version
+      description: "Include the exact Core/frontend version."
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: Installation method
+      options:
+        - HACS custom repository
+        - Manual release bundle
+        - Development build
+    validations:
+      required: true
   - type: textarea
-    id: additionalInfo
+    id: device
     attributes:
-      label: Additional Comments (optional)
-      placeholder: 
+      label: Device and integration
+      description: "Include manufacturer, model, firmware, integration name, control_mode, and how the media player and remote entities are paired."
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: "Explain the use case and current behavior."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Requested behavior
+      description: "Describe the expected result and a concrete example."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: "Screenshots, relevant errors, and full historical upstream issue URLs if applicable."
     validations:
       required: false

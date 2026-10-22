@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home Assistant TV Remote development preview</title>
+  <style>
+    :root{font:16px/1.5 system-ui,sans-serif;color:#182738;background:#f2f5f8;--primary-text-color:#182738;--secondary-text-color:#526477;--primary-color:#087fa7;--card-background-color:#fff;--ha-card-background:#fff}
+    *{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:24px;margin:0 0 4px}p{margin:0 0 20px;color:#526477}label{display:inline-flex;gap:8px;align-items:center;margin:0 14px 16px 0}select,button{font:inherit;padding:8px;border:1px solid #acbbca;border-radius:6px;background:white;color:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid #087fa7;outline-offset:3px}#cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;align-items:start}article{background:white;border:1px solid #d2dce6;border-radius:12px;padding:16px;min-width:0}article h2{font-size:16px;margin:0 0 12px}firemote-card{display:block;max-width:100%}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;background:#142334;color:#e7f0f6;padding:14px;border-radius:8px;font-size:12px}details{margin-top:24px}#editor{background:white;padding:16px;border-radius:10px;margin-top:16px}
+  </style>
+</head>
+<body><main>
+  <h1>Home Assistant TV Remote</h1>
+  <p>Development preview with simulated Home Assistant entities. Button actions are recorded locally.</p>
+  <label>Device family <select id="family"><option value="all">All families</option></select></label>
+  <label>Scale <select id="scale"><option>60</option><option selected>85</option><option>100</option></select></label>
+  <button id="edit" type="button">Show configuration editor</button>
+  <div id="cards"></div><div id="editor" hidden></div>
+  <details><summary>Recorded actions</summary><pre id="actions">No actions recorded.</pre></details>
+  <script type="module" src="./preview.js"></script>
+</main></body></html>

@@ -1,0 +1,42 @@
+{
+  "name": "homeassistant-tv-remote",
+  "version": "5.0.0-beta.1",
+  "private": true,
+  "description": "Home Assistant TV remote dashboard card, distributed through HACS",
+  "type": "module",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Narehood/HomeAssistant-TV-Remote.git"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && vitest run",
+    "test:watch": "vitest",
+    "check": "npm run lint && npm run typecheck && npm run verify:dist && npm test",
+    "verify:dist": "node scripts/verify-dist.mjs",
+    "test:browser": "npm run build && node scripts/browser-smoke.mjs",
+    "test:roku": "npm run build && node scripts/roku-smoke.mjs"
+  },
+  "dependencies": {
+    "lit": "3.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.2",
+    "esbuild": "0.28.2",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "happy-dom": "21.0.4",
+    "playwright": "1.64.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.0",
+    "vitest": "5.0.5"
+  }
+}

@@ -508,4 +508,4 @@ const devices = {
 
 }
 
-export { devices }; 
+export { devices };

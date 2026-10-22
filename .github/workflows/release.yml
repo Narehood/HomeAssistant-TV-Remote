@@ -1,0 +1,122 @@
+name: Prepare release
+
+# Running validation or merging a branch never publishes a release.
+# Select an existing v* tag in this repository to prepare its assets.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag matching package.json (for example v5.0.0-beta.1)
+        type: string
+        required: true
+      create_draft:
+        description: Also create a draft GitHub release for review
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'Narehood/HomeAssistant-TV-Remote'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Validate repository and tag
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Narehood/HomeAssistant-TV-Remote'
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]
+      - name: Check out the release tag from the fork
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Narehood/HomeAssistant-TV-Remote
+          ref: refs/tags/${{ inputs.tag }}
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Verify package version matches tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: node --input-type=module -e 'import fs from "node:fs"; const {version} = JSON.parse(fs.readFileSync("package.json", "utf8")); if (process.env.RELEASE_TAG !== `v${version}`) throw new Error("Tag must match package.json version");'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate and build
+        run: npm run check
+      - name: Install browser for artifact validation
+        run: npx playwright install --with-deps chromium
+      - name: Validate the release artifact in a browser
+        run: npm run test:browser
+      - name: Assemble release files and checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/HA-Firemote.js
+          mkdir release-assets
+          cp dist/HA-Firemote.js LICENSE CREDITS.md THIRD_PARTY_NOTICES.md release-assets/
+          cd release-assets
+          sha256sum HA-Firemote.js LICENSE CREDITS.md THIRD_PARTY_NOTICES.md > SHA256SUMS
+          sha256sum --check SHA256SUMS
+      - name: Store reviewable release assets
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-assets
+          path: release-assets/
+          if-no-files-found: error
+          retention-days: 30
+
+  draft:
+    if: github.repository == 'Narehood/HomeAssistant-TV-Remote' && inputs.create_draft
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Download validated assets
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-assets
+          path: release-assets
+      - name: Verify and attach assets to a draft release in the fork
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Narehood/HomeAssistant-TV-Remote'
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]
+          cd release-assets
+          sha256sum --check SHA256SUMS
+          cat > release-notes.md <<'NOTES'
+          Independently maintained fork of PRProd's Firemote.
+
+          Install through HACS as a custom Dashboard repository:
+          https://github.com/Narehood/HomeAssistant-TV-Remote/blob/main/docs/INSTALLATION.md
+
+          Review the changes, Home Assistant validation evidence, and attached checksums before publishing this draft. Automated checks do not establish hardware compatibility. Replace this paragraph with the reviewed release notes.
+
+          Source is available at the release tag in Narehood/HomeAssistant-TV-Remote. The GPL license, author credit, and third-party notices are attached.
+          NOTES
+          release_options=(--draft --verify-tag)
+          if [[ "$RELEASE_TAG" == *-* ]]; then release_options+=(--prerelease); fi
+          gh release create "$RELEASE_TAG" \
+            --repo Narehood/HomeAssistant-TV-Remote \
+            "${release_options[@]}" \
+            --title "$RELEASE_TAG" \
+            --notes-file release-notes.md \
+            HA-Firemote.js SHA256SUMS LICENSE CREDITS.md THIRD_PARTY_NOTICES.md

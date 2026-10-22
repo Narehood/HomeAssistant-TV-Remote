@@ -1,73 +1,90 @@
-name: App Shortcut Request
-description: Reqeuest a new app shortcut
-title: "[New App Shortcut]: "
-labels: ["New App Shortcut", "enhancement"]
-assignees:
-  - PRProd
+name: App shortcut request
+description: Request or correct a platform-specific app shortcut
+title: "[App shortcut]: "
+labels: ['New App Shortcut', 'enhancement']
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to contribute to this project with your requests!
+        This form reports to Narehood/HomeAssistant-TV-Remote, the independently maintained Firemote fork. See [setup and troubleshooting](https://github.com/Narehood/HomeAssistant-TV-Remote/blob/main/docs/INSTALLATION.md). Include observed results; do not post credentials or private addresses.
   - type: input
-    id: appname
+    id: card-version
     attributes:
-      label: App Name
-      description: The name of the app you'd like to see added
-      placeholder: ex. YouTube
+      label: Card version
+      description: "Version shown by HACS or the card. Include the selected tag/commit for development versions."
     validations:
       required: true
-  - type: markdown
+  - type: input
+    id: ha-version
     attributes:
-      value: <br>
+      label: Home Assistant version
+      description: "Include the exact Core/frontend version."
+    validations:
+      required: true
   - type: dropdown
-    id: platform
+    id: installation
     attributes:
-      label: Device Platform
-      options: 
-       - Amazon Fire
-       - Apple TV
-       - Chromecast
-       - Homatics
-       - NVIDIA Shield
-       - onn.
-       - Roku
-       - Xiaomi
-      multiple: true
-      description: The kind of device you own.  You can choose one or more from this list.
+      label: Installation method
+      options:
+        - HACS custom repository
+        - Manual release bundle
+        - Development build
     validations:
       required: true
-  - type: markdown
+  - type: textarea
+    id: device
     attributes:
-      value: <br>
+      label: Device and integration
+      description: "Include manufacturer, model, firmware, integration name, control_mode, and how the media player and remote entities are paired."
+    validations:
+      required: true
   - type: input
-    id: appstoreLink
+    id: app
     attributes:
-      label: App Store Link and/or URL to .apk file if sideloaded
-      description: "Optionally provide a link to the [Google Play Store](https://play.google.com/store/apps?device=tv), [Amazon app store](https://www.amazon.com/Fire-TV-Apps-All-Models/b/?ie=UTF8&node=10208590011), [Apple App Store](https://apps.apple.com), or [Roku Channel Store](https://channelstore.roku.com/) where this app can be downloaded.  If this is a sideloaded app, please include a full URL or Downloader code for where the .apk can be found"
-    validations:
-      required: false
-  - type: markdown
-    attributes:
-      value: "<br>Open the appropriate link and follow the instructions listed. Paste the results into this **Required Information** box.<br> - [Instructions for Amazon Fire, Chromecast, NVIDIA Shield, and Xiaomi Android devices](https://github.com/PRProd/HA-Firemote/wiki/Providing-Details-for-App-Launcher-Requests#for-fire-tv-chromecast-nvidia-shield-xiaomi-mi-and-other-android-based-devices)<br> - [Instructions for Apple TV Devices](https://github.com/PRProd/HA-Firemote/wiki/Providing-Details-for-App-Launcher-Requests#for-apple-tv-devices)<br> - [Instructions for Roku Devices](https://github.com/PRProd/HA-Firemote/wiki/Providing-Details-for-App-Launcher-Requests#for-roku-devices)"
-  - type: textarea
-    id: requiredInfo
-    attributes:
-      label: Required Information
-      placeholder: Open the appropriate link from the list above, follow the directions, and ONLY paste those results into this field
+      label: App name and version
+      description: "Include the exact app name and app version."
     validations:
       required: true
-  - type: markdown
+  - type: input
+    id: region
     attributes:
-      value: <br>
-  - type: textarea
-    id: additionalInfo
+      label: Country or region and device language
+      description: "App availability and launch identifiers may differ by region or language."
+    validations:
+      required: true
+  - type: input
+    id: store
     attributes:
-      label: Optional Comments
-      description: Add any additional related comments here, or maybe write something clever like a poem or a joke.
-      placeholder: 
+      label: Official store URL
+      description: "Link to the relevant app store listing or the publisher download page."
     validations:
       required: false
-  - type: markdown
+  - type: textarea
+    id: identifier
     attributes:
-      value: <br>Before submitting this issue form, please understand that processing your request may require you to provide some additional information.  By clicking submit, you agree that you will do your best to reply to any communications in a timely manner or your request may be denied.  The more information you provide in this form, and the quicker you respond to communications from me, the faster your request will be added to the Firemote project.
+      label: Observed launch information
+      description: "Follow the collecting-device-information section in the installation guide. Include Android package/activity or deep link, Apple TV source_list, or Roku app_id/app_name/source. State if not available."
+    validations:
+      required: true
+  - type: textarea
+    id: yaml
+    attributes:
+      label: Minimal card YAML
+      description: "Remove credentials and personal information."
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and observed result
+      description: "Give numbered reproduction/test steps, expected behavior, actual behavior, and relevant action or browser errors."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: "Screenshots, relevant errors, and full historical upstream issue URLs if applicable."
+    validations:
+      required: false
