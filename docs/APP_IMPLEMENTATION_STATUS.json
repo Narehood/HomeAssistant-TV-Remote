@@ -6,7 +6,7 @@
   "openAppRequestCount": 145,
   "openLabeledAppRequestCount": 131,
   "contextCount": 14,
-  "hardwareVerification": "No hardware or Home Assistant service execution performed. Candidate implementation means complete static metadata, not a working device launch.",
+  "hardwareVerification": "Metadata-authoring snapshot: no hardware or Home Assistant service execution performed during catalog authoring. Per-row verification describes that handoff. Later direct-ECP device evidence is tracked separately in docs/DEVICE_VALIDATION.md and does not establish Home Assistant/HACS validation.",
   "rows": [
     {
       "issue": 6,

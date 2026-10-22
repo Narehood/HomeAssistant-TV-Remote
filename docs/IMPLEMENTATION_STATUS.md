@@ -29,9 +29,13 @@ Final local validation: a fresh `npm ci` completed, `npm run check` passed all *
 
 The implementation underwent a separate read-only review. Its keyboard focus-departure finding is covered by a regression check. The automated harness records actions locally; it never calls a real Home Assistant installation. Local evidence is written under ignored `.test-results/`; CI repeats the documented commands. See [development](DEVELOPMENT.md) for exact tooling and limitations.
 
+Hosted validation [passed on the modernization commit](https://github.com/Narehood/HomeAssistant-TV-Remote/actions/runs/39820406313), including Linux Chromium and HACS metadata checks. Subsequent authorized testing on a Hisense Roku TV confirmed YouTube and ZITOTV2GO foreground launches and card highlighting, accepted navigation, repeat cancellation, and restoration of the previous app. That optional live test uses a restricted direct-ECP bridge, not a Home Assistant instance. See [device evidence and exact limits](DEVICE_VALIDATION.md); actual HACS/integration validation is still pending.
+
 ## Fork administration applied
 
 Only `Narehood/HomeAssistant-TV-Remote` has been changed: its issue tracker is enabled, the issue forms' missing labels have been created, and repository description/topics have been updated. The local GitHub CLI default points explicitly to the fork. No upstream issue, PR, comment, reaction, release, workflow, or other repository operation was written.
+
+Fork Actions have also been activated, and validation was manually dispatched against `feature/modernize-hacs`. [Draft PR #1](https://github.com/Narehood/HomeAssistant-TV-Remote/pull/1) targets this fork's `main`; no release has been published.
 
 Branch/tag rules and organization-wide Actions/Dependabot policy remain maintainer administration. The release workflow is manual and can prepare assets or create an optional draft; validation and merges do not publish releases.
 

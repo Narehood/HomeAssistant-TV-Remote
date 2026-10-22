@@ -21,7 +21,8 @@
     "test:watch": "vitest",
     "check": "npm run lint && npm run typecheck && npm test && npm run verify:dist",
     "verify:dist": "node scripts/verify-dist.mjs",
-    "test:browser": "npm run build && node scripts/browser-smoke.mjs"
+    "test:browser": "npm run build && node scripts/browser-smoke.mjs",
+    "test:roku": "npm run build && node scripts/roku-smoke.mjs"
   },
   "dependencies": {
     "lit": "3.3.3"

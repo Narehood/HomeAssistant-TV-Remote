@@ -34,6 +34,8 @@ Use focused regression cases for configuration normalization, service payloads a
 
 Record real Home Assistant version, integration, device model, firmware, configuration, and observed results when reporting device validation. Automated tests and upstream reports do not establish that a device or launch identifier works. Add a minimum Home Assistant version to `hacs.json` only when supported API requirements and actual compatibility evidence justify it.
 
+For an authorized Hisense Roku TV, the optional `npm run test:roku -- --host <Roku-IP-or-hostname>` check loads the actual bundle in Chrome and relays a restricted set of service payloads directly to Roku ECP. It sends navigation, tests installed YouTube/ZITOTV2GO launchers, and restores the previously open app. It requires no developer credentials and is excluded from CI and normal tests. See [device validation](DEVICE_VALIDATION.md) for its exact scope, reproducibility, and the distinction from Home Assistant integration testing.
+
 ## Configuration and catalog contracts
 
 `control_mode` accepts `legacy` (the default) and the explicit opt-in `android-tv-remote`. The latter reuses `android_tv_remote_entity` for the matching remote and `entity` for the media player created by the Android TV Remote integration. Expose this choice in the editor and preserve it through edits; do not silently migrate existing configurations. See the [user setup examples](INSTALLATION.md#opt-in-to-android-tv-remote).
